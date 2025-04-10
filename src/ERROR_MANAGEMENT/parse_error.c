@@ -1,5 +1,12 @@
 #include "Cube3d.h"
 
+int parse_error(int error_flag)
+{
+	if (error_flag == true)
+		return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
+}
+
 int arg_error(int error_flag)
 {
 	if (error_flag == TOO_FEW_ARGUMENT)

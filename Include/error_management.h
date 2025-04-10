@@ -7,5 +7,6 @@
 # define INVALID_FILE 4
 
 int	arg_error(int error_flag);
+int	parse_error(int error_flag);
 
 # endif
