@@ -1,14 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   double_array_size.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ttaquet <ttaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/04/10 17:15:19 by tom              ###   ########.fr       */
+/*   Created: 2024/04/09 17:15:03 by ttaquet           #+#    #+#             */
+/*   Updated: 2024/04/10 17:33:20 by ttaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "libamoa.h"
 
+int	double_array_size(char **double_array)
+{
+	int	size;
+
+	size = -1;
+	while (double_array[++size])
+		continue ;
+	return (size);
+}

@@ -1,14 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ttaquet <ttaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/04/10 17:15:19 by tom              ###   ########.fr       */
+/*   Created: 2023/10/21 15:55:44 by ttaquet           #+#    #+#             */
+/*   Updated: 2024/01/22 17:03:11 by ttaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "libamoa.h"
 
+void	ft_lstadd_back(t_list **head, t_list *new)
+{
+	t_list	*list;
+
+	if (*head)
+	{
+		list = ft_lstlast(*head);
+		list->next = new;
+	}
+	else
+		*head = new;
+}

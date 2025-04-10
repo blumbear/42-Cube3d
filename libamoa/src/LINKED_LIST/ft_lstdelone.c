@@ -1,14 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: ttaquet <ttaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/04/10 17:15:19 by tom              ###   ########.fr       */
+/*   Created: 2023/10/21 16:37:47 by ttaquet           #+#    #+#             */
+/*   Updated: 2024/01/22 17:03:11 by ttaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "libamoa.h"
 
+void	ft_lstdelone(t_list *list, void (*del_fun)(void *))
+{
+	del_fun(list->content);
+	free(list);
+}
