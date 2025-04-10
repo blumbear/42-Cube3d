@@ -21,7 +21,7 @@ $(MAIN) \
 $(PARSE)
 
 SRC_FILES = $(addprefix src/ERROR_MANAGEMENT/, $(ERROR_MANAGEMENT)) \
-$(addprefix src/MAIN/, $(MAIN))
+$(addprefix src/MAIN/, $(MAIN)) \
 $(addprefix src/PARSE/, $(PARSE))
 
 OBJ_DIR = obj/
