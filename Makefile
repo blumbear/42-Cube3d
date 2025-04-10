@@ -1,0 +1,58 @@
+NAME = cube3d
+
+LIBAMOA = libamoa/libamoa.a
+
+CC = cc
+
+CFLAGS =	-Wall -Wextra -Werror -g \
+			-IInclude 
+
+LFLAGS =	-Llibamoa \
+			-lamoa -lreadline
+
+ERROR_MANAGEMENT = parse_error
+
+MAIN = main
+
+PARSE = parse
+
+FILES = $(ERROR_MANAGEMENT) \
+$(MAIN) \
+$(PARSE)
+
+SRC_FILES = $(addprefix src/ERROR_MANAGEMENT/, $(ERROR_MANAGEMENT)) \
+$(addprefix src/MAIN/, $(MAIN))
+$(addprefix src/PARSE/, $(PARSE))
+
+OBJ_DIR = obj/
+
+SRCS = $(addsuffix .c, $(SRC_FILES))
+OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(FILES)))
+
+all: $(NAME)
+
+bonus: $(NAME_BONUS)
+
+clean :
+	rm -rf $(OBJ_DIR)
+	make fclean -C libamoa
+
+fclean : clean
+	rm -rf $(NAME)
+	make fclean -C libamoa
+
+re: fclean all
+
+$(NAME): $(OBJ_DIR) $(OBJS) $(LIBAMOA)
+	$(CC) -o $@ $(OBJS) $(LFLAGS)
+
+$(LIBAMOA):
+	make -C libamoa
+
+$(OBJ_DIR):
+	mkdir $@
+
+obj/%.o: src/*/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: all clean fclean re
