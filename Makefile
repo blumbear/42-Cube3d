@@ -39,7 +39,7 @@ fclean : clean
 
 re: fclean all
 
-$(NAME): $(OBJ_DIR) $(OBJS) $(LIBAMOA)
+$(NAME): $(OBJ_DIR) $(OBJS)
 	$(CC) -o $@ $(OBJS) $(LFLAGS)
 
 $(OBJ_DIR):

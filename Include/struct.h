@@ -6,6 +6,16 @@
 # define FILENAME "Fichier à mettre"
 # define COLOR "Couleur à mettre"
 
+typedef enum s_mapflag
+{
+	NO,
+	SO,
+	WE,
+	EA,
+	F,
+	C
+} t_mapflag ;
+
 typedef struct s_coord
 {
 	int	x;
@@ -14,6 +24,7 @@ typedef struct s_coord
 
 typedef struct s_env
 {
+//--------------------
 	void	*mlx;
 //--------------------
 	void	*NO_image;
@@ -21,15 +32,14 @@ typedef struct s_env
 	void	*WE_image;
 	void	*EA_image;
 //--------------------
-	void	*F_color;
-	void	*C_color;
+	char	*F_color;
+	char	*C_color;
 //--------------------
 	char	**map;
 //--------------------
 	t_coord	player_coord;
 	bool	player;
 //--------------------
-
 } t_env;
 
 # endif
