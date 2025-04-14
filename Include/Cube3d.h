@@ -9,5 +9,7 @@
 # include "struct.h"
 # include "parse.h"
 # include "error_management.h"
+# include "mlx_int.h"
+# include "mlx.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/04/10 18:19:51 by tom              ###   ########.fr       */
+/*   Updated: 2025/04/14 16:33:12 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int main(int ac, char **av)
 	t_env env;
 	
 	if (ac < 2)
-		return (arg_error(TOO_FEW_ARGUMENT));
+		return (arg_error(INT_TOO_FEW_ARGUMENT));
 	else if (ac > 2)
-		return (arg_error(TOO_MANY_ARGUMENT));
+		return (arg_error(INT_TOO_MANY_ARGUMENT));
 	else if (check_file_format(av[1]) == false)
-		return (arg_error(INVALID_FILE_FORMAT));
-	if (parse(av[1], &env) == false)
-		return (arg_error(INVALID_FILE));
+		return (arg_error(INT_INVALID_FILE_FORMAT));
+	else if (parse(av[1], &env) == false)
+		return (EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }

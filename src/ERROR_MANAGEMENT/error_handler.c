@@ -1,0 +1,21 @@
+#include "Cube3d.h"
+
+bool parse_error(int error_flag)
+{
+	if (error_flag == INT_MAP_INVALID_PARAM)
+		ft_putstr_fd(STR_MAP_INVALID_PARAM, STDERR_FILENO);
+	return (false);
+}
+
+int arg_error(int error_flag)
+{
+	if (error_flag == INT_TOO_FEW_ARGUMENT)
+		ft_putstr_fd(STR_TOO_FEW_ARGUMENT, STDERR_FILENO);
+	else if (error_flag == INT_TOO_MANY_ARGUMENT)
+		ft_putstr_fd(STR_TOO_MANY_ARGUMENT, STDERR_FILENO);
+	else if (error_flag == INT_INVALID_FILE_FORMAT)
+		ft_putstr_fd( STR_INVALID_FILE_FORMAT, STDERR_FILENO);
+	else if (error_flag == INT_INVALID_FILE)
+		ft_putstr_fd(STR_INVALID_FILE, STDERR_FILENO);
+	return (EXIT_SUCCESS);
+}
