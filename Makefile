@@ -33,7 +33,6 @@ bonus: $(NAME_BONUS)
 
 clean :
 	rm -rf $(OBJ_DIR)
-	make fclean -C libamoa
 
 fclean : clean
 	rm -rf $(NAME)
