@@ -6,7 +6,7 @@ CFLAGS =	-Wall -Wextra -Werror -g \
 			-IInclude 
 
 LFLAGS =	-Llib \
-			-lamoa -lmlx
+			-lamoa -lmlx -lX11 -lXext
 
 ERROR_MANAGEMENT = error_handler
 
