@@ -31,12 +31,15 @@ typedef struct s_env
 	void	*SO_image;
 	void	*WE_image;
 	void	*EA_image;
+	bool	texture_fill;
 //--------------------
 	char	*F_color;
 	char	*C_color;
-//--------------------
+	bool	color_fill;
+	//--------------------
 	char	**map;
-//--------------------
+	bool	map_fill;
+	//--------------------
 	t_coord	player_coord;
 	bool	player;
 //--------------------
