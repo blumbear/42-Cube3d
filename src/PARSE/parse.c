@@ -1,8 +1,5 @@
 #include "Cube3d.h"
 
-void	*mlx_xpm_file_to_image(void *mlx_ptr, char *filename,
-int *width, int *height);
-
 bool ft_iswspace(int c)
 {
 	return (c == ' ' || c == '\t' || c == '\b' || c == '\v');
@@ -30,25 +27,23 @@ char	*fill_buffer(char *line, t_mapflag flag)
 
 void	fill_struct(char *buffer, t_mapflag flag, t_env *env)
 {
-	int *img_w;
-	int *img_h;
+	int img_w;
+	int img_h;
 
-	img_w =	ft_calloc(1, sizeof(int));
-	img_h =	ft_calloc(1, sizeof(int));
-	img_w = (int *)IMAGE_WIDTH;
-	img_h = (int *)IMAGE_HEIGHT;
+	img_w = IMAGE_WIDTH;
+	img_h = IMAGE_HEIGHT;
 	if (flag == NO)
-		env->NO_image = mlx_xpm_file_to_image(env->mlx, buffer, img_w, img_h);
+		env->NO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
 	else if (flag == SO)
-		env->SO_image = mlx_xpm_file_to_image(env->mlx, buffer, img_w, img_h);
+		env->SO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
 	else if (flag == WE)
-		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, img_w, img_h);
+		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
 	else if (flag == EA)
-		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, img_w, img_h);
+		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
 	else if (flag == F)
-		env->F_color = buffer;
+		ft_strcpy(env->F_color, buffer);
 	else if (flag == C)
-		env->C_color = buffer;
+		ft_strcpy(env->C_color, buffer);
 }
 
 bool ft_handleline(char *line, t_env *env)
