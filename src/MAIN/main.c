@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/04/15 15:24:35 by tom              ###   ########.fr       */
+/*   Updated: 2025/04/17 15:04:09 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	init_env(t_env *env)
 	env->player_coord.x = -1;
 	env->player_coord.y = -1;
 	env->player = false;
+	env->NO_image = NULL;
+	env->SO_image = NULL;
+	env->WE_image = NULL;
+	env->EA_image = NULL;
 }
 
 int end_prog(t_env *env)
