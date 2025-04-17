@@ -6,15 +6,16 @@
 # define FILENAME "Fichier à mettre"
 # define COLOR "Couleur à mettre"
 
-typedef enum s_mapflag
+typedef enum s_parse_flag
 {
 	NO,
 	SO,
 	WE,
 	EA,
 	F,
-	C
-} t_mapflag ;
+	C,
+	NOTHING
+} t_parse_flag ;
 
 typedef struct s_coord
 {
