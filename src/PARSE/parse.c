@@ -5,27 +5,33 @@ bool ft_iswspace(int c)
 	return (c == ' ' || c == '\t' || c == '\b' || c == '\v');
 }
 
-char	*fill_buffer(char *line, t_mapflag flag)
+char	*fill_buffer(char *line, t_parse_flag flag)
 {
 	int		i;
+	int		j;
 	char	*buffer;
 
 	i = 0;
 	if (flag <= 3)
-		line += 3;
-	else 
 		line += 2;
-	buffer = ft_calloc(ft_strlen(line), sizeof(char));
-	while (line[i] && !is_whitespace(line[i]))
-	{
-		buffer[i] = line[i];
+	else 
+		line += 1;
+	while(is_whitespace(line[i]))
 		i++;
-	}
-	ft_printf("buffer = %s\n", buffer);
+	if ((line[i] != '.' || line[i + 1] != '/') && flag <= 3)
+		return (NULL);
+	j = i;
+	while (line[j] && !is_whitespace(line[j]))
+		j++;
+	buffer = ft_calloc(j, sizeof(char));
+	j = 0;
+	while (line[i] && !is_whitespace(line[i]))
+		buffer[j++] = line[i++];
+	buffer[i] = '\0';
 	return (buffer);
 }
 
-void	fill_struct(char *buffer, t_mapflag flag, t_env *env)
+void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	int img_w;
 	int img_h;
@@ -46,34 +52,45 @@ void	fill_struct(char *buffer, t_mapflag flag, t_env *env)
 		ft_strcpy(env->C_color, buffer);
 }
 
+t_parse_flag map_test(char *line, int i)
+{
+	if (ft_strncmp(line + i, "NO", 2) == 0)
+		return (NO);
+	else if (ft_strncmp(line + i, "SO", 2) == 0)
+		return (SO);
+	else if (ft_strncmp(line + i, "WE", 2) == 0)
+		return (WE);
+	else if (ft_strncmp(line + i, "EA", 2) == 0)
+		return (EA);
+	else if (line[i] == 'F' && line[i + 1] == ' ')
+		return (F);
+	else if (line[i] == 'C' && line[i + 1] == ' ')
+		return (C);
+	return (NOTHING);
+}
+
 bool ft_handleline(char *line, t_env *env)
 {
 	int			i;
 	char		*buffer;
-	t_mapflag	flag;
+	t_parse_flag	flag;
 
 	i = 0;
 	while (ft_iswspace(line[i]) && line[i])
 		i++;
-	if (ft_strncmp(line + i, "NO ./", 5) == 0)
-		flag = NO;
-	else if (ft_strncmp(line + i, "SO ./", 5) == 0)
-		flag = SO;
-	else if (ft_strncmp(line + i, "WE ./", 5) == 0)
-		flag = WE;
-	else if (ft_strncmp(line + i, "EA ./", 5) == 0)
-		flag = EA;
-	else if (line[i] == 'C' && line[i + 1] == ' ')
-		flag = C;
-	else if (line[i] == 'F' && line[i + 1] == ' ')
-		flag = F;
-	else if (is_whitespace(line[i]) || line[i] == '\n')
-		return (true);
-	else
-		return (false);
+	flag = map_test(line, i);
+	if (flag == NOTHING)
+	{
+		if (is_whitespace(line[i]))
+			return (true);
+		else
+			return (false);
+	}
+	ft_putstr_fd(TEST_PRINT, 0);
 	buffer = fill_buffer(line + i, flag);
+	if (!buffer)
+		return (false);
 	fill_struct(buffer, flag, env);
-	free(buffer);
 	return (true);
 }
 
