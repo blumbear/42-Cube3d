@@ -4,6 +4,10 @@ bool parse_error(int error_flag)
 {
 	if (error_flag == INT_MAP_INVALID_PARAM)
 		ft_putstr_fd(STR_MAP_INVALID_PARAM, STDERR_FILENO);
+	if (error_flag == INT_MAP_INVALID_PARAM)
+		ft_putstr_fd(STR_MAP_INVALID_PARAM, STDERR_FILENO);
+	if (error_flag == INT_MAP_INVALID_CHAR)
+		ft_putstr_fd(STR_MAP_INVALID_CHAR, STDERR_FILENO);
 	return (false);
 }
 

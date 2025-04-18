@@ -12,7 +12,7 @@ ERROR_MANAGEMENT = error_handler
 
 MAIN = main
 
-PARSE = parse
+PARSE = parse parse_bis
 
 FILES = $(ERROR_MANAGEMENT) \
 $(MAIN) \
