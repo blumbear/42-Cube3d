@@ -27,7 +27,7 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	j = 0;
 	while (line[i] && !is_whitespace(line[i]))
 		buffer[j++] = line[i++];
-	buffer[i] = '\0';
+	buffer[j] = '\0';
 	return (buffer);
 }
 
@@ -69,10 +69,40 @@ t_parse_flag map_test(char *line, int i)
 	return (NOTHING);
 }
 
-bool ft_handleline(char *line, t_env *env)
+
+bool	check_map_line(char *line)
 {
-	int			i;
-	char		*buffer;
+	int	i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
+				&& line[i] != 'O' && line[i] != 'E' && line[i] != 'W'
+				&& line[i] != ' ' && line[i] != '\n')
+			return (false);
+	}
+	return (true);
+}
+
+bool	check_map_first_line(char *line, bool *map)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] != '1' && line[i] != ' ' && line[i] != '\n')
+			return (false);
+	}
+	*map = true;
+	return (true);
+}
+
+bool ft_handleline(char *line, t_env *env, bool *map)
+{
+	int				i;
+	char			*buffer;
 	t_parse_flag	flag;
 
 	i = 0;
@@ -83,14 +113,43 @@ bool ft_handleline(char *line, t_env *env)
 	{
 		if (is_whitespace(line[i]))
 			return (true);
+		else if (check_map_first_line(line, map))
+			return (true);
 		else
 			return (false);
 	}
-	ft_putstr_fd(TEST_PRINT, 0);
 	buffer = fill_buffer(line + i, flag);
 	if (!buffer)
 		return (false);
 	fill_struct(buffer, flag, env);
+	free(buffer);
+	return (true);
+}
+
+
+int	read_map(int depth, t_env *env, int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	if (line == NULL)
+	{
+		env->map = ft_calloc(depth + 1, sizeof(char *));
+		env->map[depth] = NULL;
+		return (false);
+	}
+	if (check_map_line(line) == false)
+	{
+		free(line);
+		parse_error(INT_MAP_INVALID_CHAR);
+		return (-1);
+	}
+	if (read_map(depth + 1, env, fd) == -1)
+	{
+		free(line);
+		return (-1);
+	}
+	env->map[depth] = line;
 	return (true);
 }
 
@@ -98,22 +157,27 @@ bool parse(char *file, t_env *env)
 {
 	int		fd;
 	char	*buffer;
+	bool	map;
 
+	map = false;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (false);
 	buffer = get_next_line(fd);
-	while (buffer)
+	while (buffer && map == false)
 	{
-		if (ft_handleline(buffer, env) == false)
+		if (ft_handleline(buffer, env, &map) == false)
 		{
 			free(buffer);
 			close(fd);
 			return (parse_error(INT_MAP_INVALID_PARAM));
 		}
 		free(buffer);
-		buffer = (get_next_line(fd));
+		if (map == false)
+			buffer = get_next_line(fd);
 	}
+	if (!read_map(0, env, fd))
+		return (parse_error(INT_MAP_INVALID_CHAR));
 	close(fd);
 	return (true);
 }
