@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/04/17 15:04:09 by tom              ###   ########.fr       */
+/*   Updated: 2025/04/18 18:08:50 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int main(int ac, char **av)
 		return (arg_error(INT_INVALID_FILE_FORMAT));
 	else if (parse(av[1], &env) == false)
 		return (end_prog(&env));
+	ft_print_double_array(env.map, 0);
  	return (end_prog(&env));
 }

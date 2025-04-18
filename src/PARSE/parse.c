@@ -127,11 +127,10 @@ bool ft_handleline(char *line, t_env *env, bool *map)
 }
 
 
-int	read_map(int depth, t_env *env, int fd)
+int	read_map(int depth, t_env *env, int fd, char *line)
 {
-	char	*line;
-
-	line = get_next_line(fd);
+	if (!line)
+		line = get_next_line(fd);
 	if (line == NULL)
 	{
 		env->map = ft_calloc(depth + 1, sizeof(char *));
@@ -144,7 +143,7 @@ int	read_map(int depth, t_env *env, int fd)
 		parse_error(INT_MAP_INVALID_CHAR);
 		return (-1);
 	}
-	if (read_map(depth + 1, env, fd) == -1)
+	if (read_map(depth + 1, env, fd, NULL) == -1)
 	{
 		free(line);
 		return (-1);
@@ -172,11 +171,13 @@ bool parse(char *file, t_env *env)
 			close(fd);
 			return (parse_error(INT_MAP_INVALID_PARAM));
 		}
-		free(buffer);
 		if (map == false)
+		{
+			free(buffer);
 			buffer = get_next_line(fd);
+		}
 	}
-	if (!read_map(0, env, fd))
+	if (!read_map(0, env, fd, buffer))
 		return (parse_error(INT_MAP_INVALID_CHAR));
 	close(fd);
 	return (true);
