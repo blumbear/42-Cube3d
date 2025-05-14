@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/04/18 18:41:51 by tom              ###   ########.fr       */
+/*   Updated: 2025/04/23 13:46:10 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	j = i;
 	while (line[j] && !is_whitespace(line[j]))
 		j++;
-	buffer = ft_calloc(j, sizeof(char));
+	buffer = ft_calloc(j + 1, sizeof(char));
 	j = 0;
 	while (line[i] && !is_whitespace(line[i]))
 		buffer[j++] = line[i++];
-	buffer[j] = '\0';
+	buffer[j + 1] = '\0';
 	return (buffer);
 }
 
@@ -104,7 +104,7 @@ bool parse(char *file, t_env *env, bool map)
 			close(fd);
 			return (parse_error(INT_MAP_INVALID_PARAM));
 		}
-		if (map == false)
+		else if (map == false)
 		{
 			free(buffer);
 			buffer = get_next_line(fd);

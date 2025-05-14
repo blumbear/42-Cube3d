@@ -6,23 +6,29 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:17 by tom               #+#    #+#             */
-/*   Updated: 2025/04/18 18:41:56 by tom              ###   ########.fr       */
+/*   Updated: 2025/04/23 13:48:30 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cube3d.h"
 
-bool	check_map_line(char *line)
+bool	check_map_line(char *line, t_env *env, int y)
 {
 	int	i;
 
 	i = -1;
 	while (line[++i])
 	{
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
-				&& line[i] != 'O' && line[i] != 'E' && line[i] != 'W'
-				&& line[i] != ' ' && line[i] != '\n')
-			return (false);
+		if (line[i] == 'N' || line[i] == 'W'
+				|| line[i] == 'E' || line[i] == 'O')
+		{
+			if (env->player_coord.x != -1)
+				return (parse_error(INT_DOUBLE_PLAYER_IN_MAP));
+			env->player_coord.x = i;
+			env->player_coord.y = y;
+		}
+		if (ft_strchr("01NSWE\n", line[i]) == NULL)
+			return (parse_error(INT_MAP_INVALID_CHAR));
 	}
 	return (true);
 }
@@ -68,10 +74,9 @@ int	read_map(int depth, t_env *env, int fd, char *line)
 		env->map[depth] = NULL;
 		return (true);
 	}
-	if (check_map_line(line) == false)
+	if (check_map_line(line, env, depth) == false)
 	{
 		free(line);
-		parse_error(INT_MAP_INVALID_CHAR);
 		return (-1);
 	}
 	if (read_map(depth + 1, env, fd, NULL) == -1)
