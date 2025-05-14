@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:17 by tom               #+#    #+#             */
-/*   Updated: 2025/04/23 13:48:30 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/14 15:07:09 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ bool	check_map_line(char *line, t_env *env, int y)
 	i = -1;
 	while (line[++i])
 	{
+		if (ft_strchr("01NSWE\n ", line[i]) == NULL)
+			return (parse_error(INT_MAP_INVALID_CHAR));
 		if (line[i] == 'N' || line[i] == 'W'
 				|| line[i] == 'E' || line[i] == 'O')
 		{
-			if (env->player_coord.x != -1)
+			if (env->player_coord->x != -1)
 				return (parse_error(INT_DOUBLE_PLAYER_IN_MAP));
-			env->player_coord.x = i;
-			env->player_coord.y = y;
+			env->player_coord->x = i;
+			env->player_coord->y = y;
 		}
-		if (ft_strchr("01NSWE\n", line[i]) == NULL)
-			return (parse_error(INT_MAP_INVALID_CHAR));
 	}
 	return (true);
 }

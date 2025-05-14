@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/04/18 18:37:57 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/14 16:55:36 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	init_env(t_env *env)
 	env->C_color = ft_calloc(12, sizeof(char));
 	env->color_fill = -1;
 	env->map = NULL;
+	env->map_size = NULL;
 	env->map_fill = false;
-	env->player_coord.x = -1;
-	env->player_coord.y = -1;
+	env->player_coord = ft_calloc(1, sizeof(t_coord));
+	env->player_coord->x = -1;
+	env->player_coord->y = -1;
 	env->player = false;
 	env->NO_image = NULL;
 	env->SO_image = NULL;
@@ -52,21 +54,91 @@ int end_prog(t_env *env)
 		free(env->F_color);
 	if (env->map)
 		ft_free_double_array(env->map);
+	if (env->map_size)
+		free(env->map_size);
+	if (env->player_coord)
+		free(env->player_coord);
 	return (EXIT_SUCCESS);
 }
+
+bool	floodfill(char **map, int x, int y, int *map_size)
+{
+	if (map[y][x] != '1')
+	{
+		if (map_size[y + 1] < x + 1 || map_size[y - 1] < x + 1)
+			return (false);
+		else if (map[y + 1][x] == ' ' || map[y + 1][x] == '\n')
+			return (false);
+		else if (map[y - 1][x] == ' ' || map[y - 1][x] == '\n')
+			return (false);
+		else if (map[y][x + 1] == ' ' || map[y][x + 1] == '\n')
+			return (false);
+		else if (map[y][x - 1] == ' ' || map[y][x - 1] == '\n')
+			return (false);
+	}
+	map[y][x] *= -1;
+	if (map[y + 1][x] != '1' && map[y + 1][x] > 0)
+		floodfill(map, x, y + 1, map_size);
+	if (map[y - 1][x] != '1' && map[y - 1][x] > 0)
+		floodfill(map, x, y - 1, map_size);
+	if (map[y][x + 1] != '1' && map[y][x + 1] > 0)
+		floodfill(map, x + 1, y, map_size);
+	if (map[y][x - 1] != '1' && map[y][x - 1] > 0)
+		floodfill(map, x - 1, y, map_size);
+	return (true);
+}
+
+bool	map_check(t_env *env)
+{
+	// int	i;
+	// int	j;
+
+	if (!floodfill(env->map, env->player_coord->x, env->player_coord->y, env->map_size))
+		return (parse_error(INT_MAP_IS_NOT_SURROUNDED));
+	// i = -1;
+	// while (env->map[++i])
+	// {
+	// 	j = -1;
+	// 	while (env->map[i][++j])
+	// 		if (env->map[i][j] <= 0)
+	// 			env->map[i][j] *= -1;
+	// }
+	return (true);
+}
+
+void	set_map_size(t_env *env)
+{
+	int i;
+
+	i = 0;
+	while (env->map[i])
+		i++;
+	env->map_size = ft_calloc(i, sizeof(int));
+	i = -1;
+	while (env->map[++i])
+	{
+		env->map_size[i] = ft_strlen(env->map[i]);
+		ft_printf("%d\n", env->map_size[i]);
+	}
+	return ;
+}
+
 
 int main(int ac, char **av)
 {
 	t_env env;
 	
-	init_env(&env);
 	if (ac < 2)
 		return (arg_error(INT_TOO_FEW_ARGUMENT));
 	else if (ac > 2)
 		return (arg_error(INT_TOO_MANY_ARGUMENT));
 	else if (check_file_format(av[1]) == false)
 		return (arg_error(INT_INVALID_FILE_FORMAT));
-	else if (parse(av[1], &env, false) == false)
+	init_env(&env);
+	if (parse(av[1], &env, false) == false)
+		return (end_prog(&env));
+	set_map_size(&env);
+	if (map_check(&env) == false)
 		return (end_prog(&env));
 	ft_print_double_array(env.map, 0);
  	return (end_prog(&env));

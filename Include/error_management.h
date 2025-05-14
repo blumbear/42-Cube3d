@@ -21,7 +21,6 @@
 # define STR_DOUBLE_PLAYER_IN_MAP "The map contain two or more players\n"
 # define STR_MAP_IS_NOT_SURROUNDED "The area around the player is not fully enclosed by walls.\n"
 
-
 # define PARSE_ERROR_MSG "PARSE_ERROR: "
 # define ARGUMENT_ERROR_MSG "ARGUMENTS_ERROR: "
 

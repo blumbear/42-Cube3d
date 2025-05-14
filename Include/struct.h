@@ -39,9 +39,10 @@ typedef struct s_env
 	bool	color_fill;
 	//--------------------
 	char	**map;
+	int		*map_size;
 	bool	map_fill;
 	//--------------------
-	t_coord	player_coord;
+	t_coord	*player_coord;
 	bool	player;
 //--------------------
 } t_env;
