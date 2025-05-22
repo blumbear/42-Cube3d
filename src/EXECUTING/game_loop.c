@@ -5,8 +5,8 @@ void	move_forward(t_env *env)
 	t_coord	*coord;
 
 	coord = env->player_coord;
-	coord->pos_x += coord->delta_x;
-	coord->pos_y += coord->delta_y;
+	coord->pos_x += coord->delta_x * MOVEMENT_SPEED;
+	coord->pos_y += coord->delta_y * MOVEMENT_SPEED;
 }
 
 void	move_backward(t_env *env)
@@ -31,21 +31,20 @@ void	rotate_camera(t_coord *coord, bool right)
 {
 	if (right)
 	{
-		coord->player_angle += 0.1;
-		if (coord->player_angle < 2 * PI)
-			coord->player_angle -= 2 * PI;
-		coord->delta_x = cos(coord->player_angle) * 5;
-		coord->delta_y = sin (coord->player_angle) * 5;
+		coord->angle += ROTATION_SPEED;
+		if (coord->angle > 2 * PI)
+			coord->angle -= 2 * PI;
+		coord->delta_x = cos(coord->angle) * 5;
+		coord->delta_y = sin (coord->angle) * 5;
 	}
 	else
 	{
-		coord->player_angle -= 0.1;
-		if (coord->player_angle < 0)
-			coord->player_angle += 2 * PI;
-		coord->delta_x = cos(coord->player_angle) * 5;
-		coord->delta_y = sin (coord->player_angle) * 5;
+		coord->angle -= ROTATION_SPEED;
+		if (coord->angle < 0)
+			coord->angle += 2 * PI;
+		coord->delta_x = cos(coord->angle) * 5;
+		coord->delta_y = sin (coord->angle) * 5;
 	}
-
 }
 
 void	keyhook(mlx_key_data_t keydata, void *param)
