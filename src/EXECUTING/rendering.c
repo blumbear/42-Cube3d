@@ -5,6 +5,7 @@ void	render_frame(t_env *env)
 	static int	i = 0;
 
 	draw_background(env);
+	draw_rays(env);
 	if (i == 0)
 		mlx_image_to_window(env->mlx, env->window, 0, 0);
 	i++;
