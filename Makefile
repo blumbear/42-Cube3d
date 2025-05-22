@@ -17,7 +17,8 @@ MAIN = main
 
 PARSE = parse parse_bis
 
-EXECUTING = exec_init rendering game_loop exec_utils
+EXECUTING = exec_init rendering game_loop exec_utils \
+			raycasting
 
 FILES = $(ERROR_MANAGEMENT) \
 $(MAIN) \
@@ -26,7 +27,8 @@ $(EXECUTING)
 
 SRC_FILES = $(addprefix src/ERROR_MANAGEMENT/, $(ERROR_MANAGEMENT)) \
 $(addprefix src/MAIN/, $(MAIN)) \
-$(addprefix src/PARSE/, $(PARSE))
+$(addprefix src/PARSE/, $(PARSE))\
+$(addprefix src/EXECUTING/, $(EXECUTING))
 
 OBJ_DIR = obj/
 
