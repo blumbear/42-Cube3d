@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/20 19:32:16 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/22 19:33:54 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ int	main (int ac, char **av)
 	else if (check_file_format(av[1]) == false)
 		return (arg_error(INT_INVALID_FILE_FORMAT));
 	init_env(&env);
-	exec_init(&env);
 	if (parse(av[1], &env, false) == false)
 		clean_exit(&env);
 	set_map_size(&env);
+	exec_init(&env);
 	if (map_check(&env) == false)
 		clean_exit(&env);
 	ft_print_double_array(env.map, 0);
