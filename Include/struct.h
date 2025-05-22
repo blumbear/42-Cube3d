@@ -23,7 +23,7 @@ typedef struct s_coord
 	double	pos_y;
 	double	delta_x;
 	double	delta_y;
-	double	player_angle;
+	double	angle;
 }				t_coord;
 
 typedef struct s_env
@@ -44,6 +44,8 @@ typedef struct s_env
 	//--------------------
 	char		**map;
 	int			*map_size;
+	int			map_width;
+	int			map_height;
 	bool		map_fill;
 	//--------------------
 	t_coord		*player_coord;
