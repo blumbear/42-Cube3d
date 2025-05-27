@@ -80,7 +80,7 @@ void	main_loop(void	*param)
 	current_time = mlx_get_time() * 1000;
 	if (current_time - last_rendering >= 1000 / FPS)
 	{
-		// print_player_coords(env->player_coord);
+		// printf("player x = %f\n player y = %f\n delta x = %f\n delta y = %f\n player angle = %f\n", env->player_coord->pos_x, env->player_coord->pos_y, env->player_coord->delta_x, env->player_coord->delta_y, env->player_coord->angle);
 		render_frame(env);
 		last_rendering = current_time;
 	}
