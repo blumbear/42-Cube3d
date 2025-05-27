@@ -15,7 +15,7 @@ typedef enum s_parse_flag
 	F,
 	C,
 	NOTHING
-} t_parse_flag ;
+}			t_parse_flag ;
 
 typedef struct s_coord
 {
@@ -26,31 +26,39 @@ typedef struct s_coord
 	double	angle;
 }				t_coord;
 
+typedef struct s_map_co
+{
+	int	pos_x;
+	int	pos_y;
+	int	x_offset;
+	int	y_offset;
+}				t_map_co;
+
 typedef struct s_env
 {
 //--------------------
-	mlx_t		*mlx;
-	mlx_image_t	*window;
+	mlx_t			*mlx;
+	mlx_image_t		*window;
 //--------------------
-	mlx_texture_t		*NO_image;
-	mlx_texture_t		*SO_image;
-	mlx_texture_t		*WE_image;
-	mlx_texture_t		*EA_image;
-	bool		texture_fill;
+	mlx_texture_t	*NO_image;
+	mlx_texture_t	*SO_image;
+	mlx_texture_t	*WE_image;
+	mlx_texture_t	*EA_image;
+	bool			texture_fill;
 //--------------------
-	char		*F_color;
-	char		*C_color;
-	bool		color_fill;
+	char			*F_color;
+	char			*C_color;
+	bool			color_fill;
 	//--------------------
-	char		**map;
-	int			*map_size;
-	int			map_width;
-	int			map_height;
-	bool		map_fill;
+	char			**map;
+	int				*map_size;
+	int				map_width;
+	int				map_height;
+	bool			map_fill;
 	//--------------------
-	t_coord		*player_coord;
-	bool		player;
+	t_coord			*player_coord;
+	bool			player;
 //--------------------
-} t_env;
+}				t_env;
 
 # endif
