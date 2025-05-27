@@ -17,6 +17,10 @@ void	exec_init(t_env *env);
 /*			Rendering			*/
 void	render_frame(t_env *frame);
 void	draw_background(t_env *env);
+void	raycasting_south(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+void	raycasting_north(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+void	raycasting_east(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+void	raycasting_west(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
 void	draw_rays(t_env *env);
 
 /*			Looping			*/
