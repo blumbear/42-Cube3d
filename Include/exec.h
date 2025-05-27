@@ -21,6 +21,7 @@ void	raycasting_south(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
 void	raycasting_north(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
 void	raycasting_east(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
 void	raycasting_west(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+float	calculate_dist(t_coord coords_a, t_coord coords_b);
 void	draw_rays(t_env *env);
 
 /*			Looping			*/

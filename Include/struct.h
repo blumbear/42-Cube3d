@@ -24,6 +24,7 @@ typedef struct s_coord
 	double	delta_x;
 	double	delta_y;
 	double	angle;
+	int		temp;
 }				t_coord;
 
 typedef struct s_map_co

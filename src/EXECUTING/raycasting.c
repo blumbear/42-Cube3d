@@ -33,16 +33,12 @@ void	infinite_line(t_env *env, t_coord *ray_coords, int *dof)
 	*dof = DEPTH_OF_FIELD;
 }
 
-void	vertical_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
+void	vertical_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords,
+	t_coord *dist)
 {
 	int		dof;
-	float	dist_v;
-	t_coord	coords_v;
 
 	dof = 0;
-	dist_v = 1000000;
-	coords_v.pos_x = env->player_coord->pos_x;
-	coords_v.pos_y = env->player_coord->pos_y;
 	if (ray_coords->angle > PI)
 		raycasting_south(env, ray_coords, map_coords);
 	else if (ray_coords->angle < PI)
@@ -50,18 +46,17 @@ void	vertical_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
 	else
 		infinite_line(env, ray_coords, &dof);
 	dof_loop(dof, ray_coords, map_coords, env);
+	dist->pos_x = env->player_coord->pos_x;
+	dist->pos_y = env->player_coord->pos_y;
+	dist->temp = calculate_dist(*(env)->player_coord, *dist);
 }
 
-void	horizontal_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
+void	horizontal_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords,
+	t_coord *dist)
 {
 	int		dof;
-	float	dist_h;
-	t_coord	coords_h;
 
 	dof = 0;
-	dist_h = 1000000;
-	coords_h.pos_x = env->player_coord->pos_x;
-	coords_h.pos_y = env->player_coord->pos_y;
 	if (ray_coords->angle > PI / 2 && ray_coords->angle < (3 * PI) / 2)
 		raycasting_west(env, ray_coords, map_coords);
 	else if (ray_coords->angle > (3 * PI) / 2 || ray_coords->angle < PI / 2)
@@ -69,6 +64,9 @@ void	horizontal_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
 	else
 		infinite_line(env, ray_coords, &dof);
 	dof_loop(dof, ray_coords, map_coords, env);
+	dist->pos_x = env->player_coord->pos_x;
+	dist->pos_y = env->player_coord->pos_y;
+	dist->temp = calculate_dist(*(env)->player_coord, *dist);
 }
 
 void	draw_rays(t_env *env)
@@ -76,6 +74,8 @@ void	draw_rays(t_env *env)
 	int			i;
 	t_coord		ray_coords;
 	t_map_co	map_coords;
+	t_coord		dist_h;
+	t_coord		dist_v;
 
 	i = 0;
 	ray_coords.pos_x = env->player_coord->pos_x;
@@ -87,9 +87,19 @@ void	draw_rays(t_env *env)
 	map_coords.y_offset = 0;
 	while (i < 1)
 	{
-		vertical_checks(env, &ray_coords, &map_coords);
-		horizontal_checks(env, &ray_coords, &map_coords);
+		vertical_checks(env, &ray_coords, &map_coords, &dist_v);
+		horizontal_checks(env, &ray_coords, &map_coords, &dist_h);
 		// printf("ray x = %f\n ray y = %f\n ray angle %f\n", ray_coords.pos_x, ray_coords.pos_y, ray_coords.angle);
+		if (dist_h.temp < dist_v.temp)
+		{
+			ray_coords.pos_x = dist_h.pos_x;
+			ray_coords.pos_y = dist_h.pos_y;
+		}
+		else
+		{
+			ray_coords.pos_x = dist_v.pos_x;
+			ray_coords.pos_y = dist_v.pos_y;
+		}
 		i++;
 	}
 }
