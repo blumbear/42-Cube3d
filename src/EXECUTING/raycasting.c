@@ -6,8 +6,8 @@ void	dof_loop(int dof, t_coord *ray_coords, t_map_co *map_coords, t_env *env)
 	{
 		map_coords->pos_x = (int) ray_coords->pos_x >> 6;
 		map_coords->pos_y = (int) ray_coords->pos_y >> 6;
-		if (map_coords->pos_x <= env->map_width
-			&& map_coords->pos_y <= env->map_height)
+		if ((map_coords->pos_x < env->map_width && map_coords->pos_x >= 0)
+			&& (map_coords->pos_y < env->map_height && map_coords->pos_y >= 0))
 		{
 			if (env->map[map_coords->pos_x][map_coords->pos_y] == '1')
 				dof = DEPTH_OF_FIELD;
@@ -18,8 +18,11 @@ void	dof_loop(int dof, t_coord *ray_coords, t_map_co *map_coords, t_env *env)
 				dof++;
 			}
 		}
-		else
+		if (ray_coords->pos_x < 0 || ray_coords->pos_x >= env->map_width * 64
+			|| ray_coords->pos_y < 0 || ray_coords->pos_y >= env->map_height
+			* 64)
 			dof = DEPTH_OF_FIELD;
+
 	}
 }
 
@@ -33,15 +36,18 @@ void	infinite_line(t_env *env, t_coord *ray_coords, int *dof)
 void	vertical_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
 {
 	int		dof;
-	float	tan_inverse;
+	float	dist_v;
+	t_coord	coords_v;
 
 	dof = 0;
-	tan_inverse = -1 / tan(ray_coords->angle);
-	if (ray_coords->angle > PI) //south
+	dist_v = 1000000;
+	coords_v.pos_x = env->player_coord->pos_x;
+	coords_v.pos_y = env->player_coord->pos_y;
+	if (ray_coords->angle > PI)
 		raycasting_south(env, ray_coords, map_coords);
-	else if (ray_coords->angle < PI) //north
+	else if (ray_coords->angle < PI)
 		raycasting_north(env, ray_coords, map_coords);
-	else if (ray_coords->angle == 0 || ray_coords->angle == PI) //east or west
+	else
 		infinite_line(env, ray_coords, &dof);
 	dof_loop(dof, ray_coords, map_coords, env);
 }
@@ -49,13 +55,18 @@ void	vertical_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
 void	horizontal_checks(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
 {
 	int		dof;
+	float	dist_h;
+	t_coord	coords_h;
 
 	dof = 0;
-	if (ray_coords->angle > PI / 2 && ray_coords->angle < 3 * PI / 2) //West
+	dist_h = 1000000;
+	coords_h.pos_x = env->player_coord->pos_x;
+	coords_h.pos_y = env->player_coord->pos_y;
+	if (ray_coords->angle > PI / 2 && ray_coords->angle < (3 * PI) / 2)
 		raycasting_west(env, ray_coords, map_coords);
-	else if (ray_coords->angle > 3 * PI / 2 || ray_coords->angle < PI / 2) //East
+	else if (ray_coords->angle > (3 * PI) / 2 || ray_coords->angle < PI / 2)
 		raycasting_east(env, ray_coords, map_coords);
-	else if (ray_coords->angle == 0 || ray_coords->angle == PI) //North or South
+	else
 		infinite_line(env, ray_coords, &dof);
 	dof_loop(dof, ray_coords, map_coords, env);
 }
@@ -76,8 +87,9 @@ void	draw_rays(t_env *env)
 	map_coords.y_offset = 0;
 	while (i < 1)
 	{
-		horizontal_checks(env, &ray_coords, &map_coords);
 		vertical_checks(env, &ray_coords, &map_coords);
+		horizontal_checks(env, &ray_coords, &map_coords);
+		// printf("ray x = %f\n ray y = %f\n ray angle %f\n", ray_coords.pos_x, ray_coords.pos_y, ray_coords.angle);
 		i++;
 	}
 }
