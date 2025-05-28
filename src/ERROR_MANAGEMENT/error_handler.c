@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
+/*   Updated: 2025/05/29 23:13:21 by tom              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3d.h"
 
 bool	parse_error(int error_flag)
-
 {
 	ft_putstr_fd(PARSE_ERROR_MSG, STDERR_FILENO);
 	if (error_flag == INT_MAP_INVALID_PARAM)

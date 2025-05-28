@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 22:38:00 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/29 23:16:14 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ char	*rgb_to_hex_char(char *buffer)
 	ft_free_double_array(tmp_split);
 	res[9] = 0;
 	return (res);
+}
+
+bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+{
+	int	img_w;
+	int	img_h;
+
+	img_w = IMAGE_WIDTH;
+	img_h = IMAGE_HEIGHT;
+	if (flag == NO)
+		env->NO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+	else if (flag == SO)
+		env->SO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+	else if (flag == WE)
+		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+	else if (flag == EA)
+		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+	return (rgb_check(buffer, flag, env));
 }
 
 bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)

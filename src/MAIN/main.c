@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 22:49:29 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/29 23:14:02 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,29 @@ void	init_env(t_env *env)
 	env->SO_image = NULL;
 	env->WE_image = NULL;
 	env->EA_image = NULL;
+}
+
+int end_prog(t_env *env)
+{
+	if (env->NO_image)
+		free(env->NO_image);
+	if (env->SO_image)
+		free(env->SO_image);
+	if (env->WE_image)
+		free(env->WE_image);
+	if (env->EA_image)
+		free(env->EA_image);
+	if (env->C_color)
+		free(env->C_color);
+	if (env->F_color)
+		free(env->F_color);
+	if (env->map)
+		ft_free_double_array(env->map);
+	if (env->map_size)
+		free(env->map_size);
+	if (env->player_coord)
+		free(env->player_coord);
+	return (EXIT_SUCCESS);
 }
 
 int main(int ac, char **av)
