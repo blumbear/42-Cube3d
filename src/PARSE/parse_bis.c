@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:17 by tom               #+#    #+#             */
-/*   Updated: 2025/05/14 15:07:09 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 11:55:48 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	check_map_first_line(char *line, bool *map)
 	i = -1;
 	while (line[++i])
 	{
-		if (line[i] != '1' && line[i] != ' ' && line[i] != '\n')
+		if (ft_strchr("01NSWE\n ", line[i]) == NULL)
 			return (false);
 	}
 	*map = true;
