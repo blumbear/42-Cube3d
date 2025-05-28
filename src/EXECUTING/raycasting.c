@@ -1,4 +1,4 @@
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 void	dof_loop(int dof, t_coord *ray_coords, t_map_co *map_coords, t_env *env)
 {

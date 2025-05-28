@@ -1,4 +1,4 @@
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 void	render_frame(t_env *env)
 {

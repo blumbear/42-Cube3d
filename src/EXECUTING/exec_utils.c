@@ -1,4 +1,4 @@
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 int	get_largest_map_column(t_env *env)
 {

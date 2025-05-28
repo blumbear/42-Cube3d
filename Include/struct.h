@@ -5,6 +5,8 @@
 # define IMAGE_HEIGHT 24
 # define FILENAME "Fichier à mettre"
 # define COLOR "Couleur à mettre"
+# define DEG_TO_RAD 0.0174533
+# define CUBE_SIZE 64
 
 typedef enum s_parse_flag
 {
@@ -53,7 +55,7 @@ typedef struct s_env
 	//--------------------
 	char			**map;
 	int				*map_size;
-	int				map_max_width;
+	int				map_width;
 	int				map_height;
 	bool			map_fill;
 	//--------------------

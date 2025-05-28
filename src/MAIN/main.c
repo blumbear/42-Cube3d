@@ -6,11 +6,11 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 18:36:04 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:49:44 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 bool	check_file_format(char *file_name)
 {
