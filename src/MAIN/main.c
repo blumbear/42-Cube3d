@@ -6,13 +6,13 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 15:58:18 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/28 18:36:04 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cube3d.h"
 
-bool check_file_format(char *file_name)
+bool	check_file_format(char *file_name)
 {
 	if (ft_strcmp(file_name + ft_strlen(file_name) - 4, ".cub") != 0)
 		return (false);
@@ -29,7 +29,7 @@ void	init_env(t_env *env)
 	env->map = NULL;
 	env->map_size = NULL;
 	env->map_fill = false;
-	env->map_max_width = 0;
+	env->map_width = 0;
 	env->player_coord = ft_calloc(1, sizeof(t_coord));
 	env->player_coord->pos_x = -1;
 	env->player_coord->pos_y = -1;
