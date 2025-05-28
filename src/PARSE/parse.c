@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 12:56:16 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 14:07:48 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,48 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	return (buffer);
 }
 
+char	*int_to_hex(int nb, char *base)
+{
+	char *res;
+
+	res = ft_calloc(3, sizeof(char));
+	if (nb < 16)
+	{
+		res[0] = '0';
+		res[1] = base[nb];
+		return (res);
+	}
+	res[1] = base[nb % 16];
+	nb /= 16;
+	res[0] = base[nb];
+	return (res);
+}
+
+char	*rgb_to_hex_char(char *buffer)
+{
+	char	*res;
+	char	**tmp_split;
+	char	*tmp;
+	int		int_tmp;
+	int		i;
+
+	res = ft_calloc(10, sizeof(char));
+	res[0] = '0';
+	res[1] = 'x';
+	i = -1;
+	tmp_split = ft_split(buffer, ',');
+	while (++i < 3)
+	{
+		int_tmp = ft_atoi(tmp_split[i]);
+		tmp = int_to_hex(int_tmp, "0123456789ABCDEF");
+		ft_strlcat(res, tmp, 9);
+		free(tmp);
+	}
+	ft_free_double_array(tmp_split);
+	res[9] = 0;
+	return (res);
+}
+
 void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	int img_w;
@@ -54,9 +96,11 @@ void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 	else if (flag == EA)
 		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
 	else if (flag == F)
-		ft_strcpy(env->F_color, buffer);
+		// ft_strcpy(env->F_color, buffer);
+		env->F_color = rgb_to_hex_char(buffer);
 	else if (flag == C)
-		ft_strcpy(env->C_color, buffer);
+		// ft_strcpy(env->C_color, buffer);
+		env->C_color = rgb_to_hex_char(buffer);
 }
 
 bool ft_handleline(char *line, t_env *env, bool *map)

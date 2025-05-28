@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 12:56:16 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 14:03:49 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ bool check_file_format(char *file_name)
 void	init_env(t_env *env)
 {
 	env->texture_fill = -3;
-	env->F_color = ft_calloc(12, sizeof(char));
-	env->C_color = ft_calloc(12, sizeof(char));
+	env->F_color = NULL;
+	env->C_color = NULL;
 	env->color_fill = -1;
 	env->map = NULL;
 	env->map_size = NULL;
@@ -77,6 +77,7 @@ int main(int ac, char **av)
 		return (end_prog(&env));
 	set_map_size(&env);
 	ft_printf("map_max_width = %d\n", env.map_max_width);
+	ft_printf("Floor = %s\nCeil  = %s\n",env.F_color , env.C_color);
 	if (map_check(&env) == false)
 		return (end_prog(&env));
 	ft_print_double_array(env.map, 0);
