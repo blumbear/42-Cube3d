@@ -53,7 +53,7 @@ typedef struct s_env
 	//--------------------
 	char			**map;
 	int				*map_size;
-	int				map_width;
+	int				map_max_width;
 	int				map_height;
 	bool			map_fill;
 	//--------------------

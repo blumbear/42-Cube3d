@@ -29,7 +29,6 @@ void	main_loop(void	*param);
 
 /*			Utils			*/
 void	print_player_coords(t_coord *coords);
-int		get_largest_map_line(t_env *env);
 int		get_largest_map_column(t_env *env);
 
 #endif

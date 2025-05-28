@@ -10,8 +10,6 @@ void	init_window(t_env *env)
 
 void	exec_init(t_env *env)
 {
-	env->map_width = get_largest_map_line(env);
-	printf("\n%d\n", env->map_width);
 	env->map_height = get_largest_map_column(env);
 	init_window(env);
 	mlx_loop_hook(env->mlx, main_loop, env);

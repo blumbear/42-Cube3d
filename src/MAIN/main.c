@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/22 19:33:54 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/28 15:58:18 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_env(t_env *env)
 	env->map = NULL;
 	env->map_size = NULL;
 	env->map_fill = false;
+	env->map_max_width = 0;
 	env->player_coord = ft_calloc(1, sizeof(t_coord));
 	env->player_coord->pos_x = -1;
 	env->player_coord->pos_y = -1;
@@ -85,7 +86,8 @@ bool	map_check(t_env *env)
 
 void	set_map_size(t_env *env)
 {
-	int i;
+	int	i;
+	int	tmp;
 
 	i = 0;
 	while (env->map[i])
@@ -94,7 +96,10 @@ void	set_map_size(t_env *env)
 	i = -1;
 	while (env->map[++i])
 	{
-		env->map_size[i] = ft_strlen(env->map[i]);
+		tmp = ft_strlen(env->map[i]);
+		if (tmp > env->map_max_width)
+			env->map_max_width = tmp;
+		env->map_size[i] = tmp;
 		ft_printf("%d\n", env->map_size[i]);
 	}
 	return ;
