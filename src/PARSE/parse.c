@@ -6,11 +6,11 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/14 15:00:02 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 15:02:44 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 char	*fill_buffer(char *line, t_parse_flag flag)
 {
@@ -38,7 +38,36 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	return (buffer);
 }
 
-void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+char	*rgb_to_hex_char(char *buffer)
+{
+	char	*res;
+	char	**tmp_split;
+	char	*tmp;
+	int		int_tmp;
+	int		i;
+
+	i = -1;
+	while (buffer[++i])
+		if (!ft_isdigit(buffer[i]) && buffer[i] != ',')
+			return (NULL);
+	res = ft_calloc(10, sizeof(char));
+	res[0] = '0';
+	res[1] = 'x';
+	i = -1;
+	tmp_split = ft_split(buffer, ',');
+	while (++i < 3)
+	{
+		int_tmp = ft_atoi(tmp_split[i]);
+		tmp = int_to_hex(int_tmp, "0123456789ABCDEF");
+		ft_strlcat(res, tmp, 9);
+		free(tmp);
+	}
+	ft_free_double_array(tmp_split);
+	res[9] = 0;
+	return (res);
+}
+
+bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	int img_w;
 	int img_h;
@@ -53,10 +82,7 @@ void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
 	else if (flag == EA)
 		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
-	else if (flag == F)
-		ft_strcpy(env->F_color, buffer);
-	else if (flag == C)
-		ft_strcpy(env->C_color, buffer);
+	return (rgb_check(buffer, flag, env));
 }
 
 bool ft_handleline(char *line, t_env *env, bool *map)
@@ -77,12 +103,13 @@ bool ft_handleline(char *line, t_env *env, bool *map)
 		else if (check_map_first_line(line, map))
 			return (true);
 		else
-			return (false);
+			return (parse_error(INT_MAP_INVALID_PARAM));
 	}
 	buffer = fill_buffer(line + i, flag);
 	if (!buffer)
 		return (false);
-	fill_struct(buffer, flag, env);
+	if (!fill_struct(buffer, flag, env))
+		return (false);
 	free(buffer);
 	return (true);
 }
@@ -102,7 +129,7 @@ bool parse(char *file, t_env *env, bool map)
 		{
 			free(buffer);
 			close(fd);
-			return (parse_error(INT_MAP_INVALID_PARAM));
+			return (false);
 		}
 		else if (map == false)
 		{

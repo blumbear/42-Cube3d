@@ -6,11 +6,11 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 11:26:50 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 14:03:49 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 bool check_file_format(char *file_name)
 {
@@ -22,8 +22,8 @@ bool check_file_format(char *file_name)
 void	init_env(t_env *env)
 {
 	env->texture_fill = -3;
-	env->F_color = ft_calloc(12, sizeof(char));
-	env->C_color = ft_calloc(12, sizeof(char));
+	env->F_color = NULL;
+	env->C_color = NULL;
 	env->color_fill = -1;
 	env->map = NULL;
 	env->map_size = NULL;
@@ -62,73 +62,6 @@ int end_prog(t_env *env)
 	return (EXIT_SUCCESS);
 }
 
-bool	floodfill(char **map, int x, int y, int *map_size)
-{
-	if (map[y][x] != '1')
-	{
-		if (map_size[y + 1] < x + 1 || map_size[y - 1] < x + 1)
-			return (false);
-		else if (map[y + 1][x] == ' ' || map[y + 1][x] == '\n')
-			return (false);
-		else if (map[y - 1][x] == ' ' || map[y - 1][x] == '\n')
-			return (false);
-		else if (map[y][x + 1] == ' ' || map[y][x + 1] == '\n')
-			return (false);
-		else if (map[y][x - 1] == ' ' || map[y][x - 1] == '\n')
-			return (false);
-	}
-	map[y][x] *= -1;
-	if (map[y + 1][x] != '1' && map[y + 1][x] > 0)
-		floodfill(map, x, y + 1, map_size);
-	if (map[y - 1][x] != '1' && map[y - 1][x] > 0)
-		floodfill(map, x, y - 1, map_size);
-	if (map[y][x + 1] != '1' && map[y][x + 1] > 0)
-		floodfill(map, x + 1, y, map_size);
-	if (map[y][x - 1] != '1' && map[y][x - 1] > 0)
-		floodfill(map, x - 1, y, map_size);
-	return (true);
-}
-
-bool	map_check(t_env *env)
-{
-	// int	i;
-	// int	j;
-
-	if (!floodfill(env->map, env->player_coord->x, env->player_coord->y, env->map_size))
-		return (parse_error(INT_MAP_IS_NOT_SURROUNDED));
-	// i = -1;
-	// while (env->map[++i])
-	// {
-	// 	j = -1;
-	// 	while (env->map[i][++j])
-	// 		if (env->map[i][j] <= 0)
-	// 			env->map[i][j] *= -1;
-	// }
-	return (true);
-}
-
-void	set_map_size(t_env *env)
-{
-	int i;
-	int tmp;
-
-	i = 0;
-	while (env->map[i])
-		i++;
-	env->map_size = ft_calloc(i, sizeof(int));
-	i = -1;
-	while (env->map[++i])
-	{
-		tmp = ft_strlen(env->map[i]);
-		if (tmp > env->map_max_width)
-			env->map_max_width = tmp;
-		env->map_size[i] = tmp;
-		ft_printf("%d\n", env->map_size[i]);
-	}
-	return ;
-}
-
-
 int main(int ac, char **av)
 {
 	t_env env;
@@ -144,6 +77,7 @@ int main(int ac, char **av)
 		return (end_prog(&env));
 	set_map_size(&env);
 	ft_printf("map_max_width = %d\n", env.map_max_width);
+	ft_printf("Floor = %s\nCeil  = %s\n",env.F_color , env.C_color);
 	if (map_check(&env) == false)
 		return (end_prog(&env));
 	ft_print_double_array(env.map, 0);

@@ -1,4 +1,4 @@
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 bool parse_error(int error_flag)
 {
@@ -11,8 +11,12 @@ bool parse_error(int error_flag)
 		ft_putstr_fd(STR_MAP_INVALID_CHAR, STDERR_FILENO);
 	else if (error_flag == INT_DOUBLE_PLAYER_IN_MAP)
 		ft_putstr_fd(STR_DOUBLE_PLAYER_IN_MAP, STDERR_FILENO);
-	else if (INT_MAP_IS_NOT_SURROUNDED)
+	else if (error_flag == INT_MAP_IS_NOT_SURROUNDED)
 		ft_putstr_fd(STR_MAP_IS_NOT_SURROUNDED, STDERR_FILENO);
+	else if (error_flag == INT_WRONG_F_RGB)
+		ft_putstr_fd(STR_WRONG_F_RGB, STDERR_FILENO);
+	else if (error_flag == INT_WRONG_C_RGB)
+		ft_putstr_fd(STR_WRONG_C_RGB, STDERR_FILENO);
 	return (false);
 }
 
