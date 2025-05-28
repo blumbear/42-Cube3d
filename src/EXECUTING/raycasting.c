@@ -76,16 +76,28 @@ void	draw_rays(t_env *env)
 	t_map_co	map_coords;
 	t_coord		dist_h;
 	t_coord		dist_v;
+	float		final_dist;
 
 	i = 0;
 	ray_coords.pos_x = env->player_coord->pos_x;
 	ray_coords.pos_y = env->player_coord->pos_y;
-	ray_coords.angle = env->player_coord->angle;
+	ray_coords.angle = env->player_coord->angle - DEG_TO_RAD;
+	if (ray_coords.angle < 0)
+		ray_coords.angle += 2 * PI;
+	if (ray_coords.angle > 2 * PI)
+		ray_coords.angle -= 2 * PI;
 	map_coords.pos_x = 0;
 	map_coords.pos_y = 0;
 	map_coords.x_offset = 0;
 	map_coords.y_offset = 0;
-	while (i < 1)
+	dist_v.pos_x = 0;
+	dist_v.pos_y = 0;
+	dist_v.temp = 1000000;
+	dist_h.pos_x = 0;
+	dist_h.pos_y = 0;
+	dist_h.temp = 1000000;
+	final_dist = 0;
+	while (i < 60)
 	{
 		vertical_checks(env, &ray_coords, &map_coords, &dist_v);
 		horizontal_checks(env, &ray_coords, &map_coords, &dist_h);
@@ -94,12 +106,20 @@ void	draw_rays(t_env *env)
 		{
 			ray_coords.pos_x = dist_h.pos_x;
 			ray_coords.pos_y = dist_h.pos_y;
+			final_dist = dist_h.temp;
 		}
 		else
 		{
 			ray_coords.pos_x = dist_v.pos_x;
 			ray_coords.pos_y = dist_v.pos_y;
+			final_dist = dist_v.temp;
 		}
+		ray_coords.angle += DEG_TO_RAD;
+		if (ray_coords.angle < 0)
+			ray_coords.angle += 2 * PI;
+		if (ray_coords.angle > 2 * PI)
+			ray_coords.angle -= 2 * PI;
+		draw_3d(env, ray_coords, final_dist, i);
 		i++;
 	}
 }

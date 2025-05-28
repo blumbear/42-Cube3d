@@ -32,3 +32,30 @@ void	draw_background(t_env *env)
 		y++;
 	}
 }
+
+void	draw_3d(t_env *env, t_coord ray_coords, float final_dist, int i)
+{
+	float	line_height;
+	int		begin_line;
+	int		end_line;
+	int		x;
+	int		y;
+	(void)ray_coords;
+
+	y = 0;
+	x = (i * 8) + WIDTH;
+	line_height = (CUBE_SIZE * HEIGHT) / final_dist;
+	if (line_height > HEIGHT)
+		line_height = HEIGHT;
+	begin_line = -line_height / 2 + HEIGHT / 2;
+	if (begin_line < 0)
+		begin_line = 0;
+	end_line = line_height / 2 + HEIGHT / 2;
+	if (end_line >= HEIGHT)
+		end_line = HEIGHT - 1;
+	while (y < end_line)
+	{
+		mlx_put_pixel(env->window, x, y, 0x000000FF);
+		y++;
+	}
+}
