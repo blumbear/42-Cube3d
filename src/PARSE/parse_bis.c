@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:17 by tom               #+#    #+#             */
-/*   Updated: 2025/05/22 16:39:24 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/28 12:56:16 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
-
-void	init_player_coords(t_coord *coords, int i, int j, char dir)
-{
-	if (dir == 'N')
-		coords->angle = PI / 2;
-	else if (dir == 'E')
-		coords->angle = PI * 2;
-	else if (dir == 'S')
-		coords->angle = (3 * PI) / 2;
-	else
-		coords->angle = PI;
-	coords->pos_x = (double)i;
-	coords->pos_y = (double)j;
-	coords->delta_x = cos(coords->angle) * 5;
-	coords->delta_y = sin (coords->angle) * 5;
-}
+#include "Cub3d.h"
 
 bool	check_map_line(char *line, t_env *env, int y)
 {
@@ -55,7 +39,7 @@ bool	check_map_first_line(char *line, bool *map)
 	i = -1;
 	while (line[++i])
 	{
-		if (line[i] != '1' && line[i] != ' ' && line[i] != '\n')
+		if (ft_strchr("01NSWE\n ", line[i]) == NULL)
 			return (false);
 	}
 	*map = true;

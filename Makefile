@@ -1,5 +1,6 @@
 NAME = cub3d
 
+
 CC = cc
 
 CFLAGS =	-Wall -Wextra -Werror -g \
@@ -15,7 +16,7 @@ ERROR_MANAGEMENT = error_handler
 
 MAIN = main
 
-PARSE = parse parse_bis
+PARSE = parse parse_bis map parse_utils
 
 EXECUTING = exec_init rendering game_loop exec_utils \
 			raycasting raycasting_utils
@@ -29,6 +30,7 @@ SRC_FILES = $(addprefix src/ERROR_MANAGEMENT/, $(ERROR_MANAGEMENT)) \
 $(addprefix src/MAIN/, $(MAIN)) \
 $(addprefix src/PARSE/, $(PARSE))\
 $(addprefix src/EXECUTING/, $(EXECUTING))
+
 
 OBJ_DIR = obj/
 
@@ -49,6 +51,7 @@ re: fclean all
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	$(CC) -o $@ $(OBJS) $(INC_ARCHIVES) $(LFLAGS)
+
 
 $(OBJ_DIR):
 	mkdir $@
