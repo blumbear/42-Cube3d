@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 11:37:22 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 11:41:08 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,19 @@ bool	floodfill(char **map, int x, int y, int *map_size)
 
 bool	map_check(t_env *env)
 {
-	// int	i;
-	// int	j;
+	int	i;
+	int	j;
 
 	if (!floodfill(env->map, env->player_coord->x, env->player_coord->y, env->map_size))
 		return (parse_error(INT_MAP_IS_NOT_SURROUNDED));
-	// i = -1;
-	// while (env->map[++i])
-	// {
-	// 	j = -1;
-	// 	while (env->map[i][++j])
-	// 		if (env->map[i][j] <= 0)
-	// 			env->map[i][j] *= -1;
-	// }
+	i = -1;
+	while (env->map[++i])
+	{
+		j = -1;
+		while (env->map[i][++j])
+			if (env->map[i][j] < 0)
+				env->map[i][j] *= -1;
+	}
 	return (true);
 }
 
