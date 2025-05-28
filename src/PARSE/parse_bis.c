@@ -6,11 +6,11 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:17 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 11:55:48 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 12:56:16 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 bool	check_map_line(char *line, t_env *env, int y)
 {

@@ -6,11 +6,11 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 12:34:37 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 12:56:16 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 bool check_file_format(char *file_name)
 {
@@ -61,80 +61,6 @@ int end_prog(t_env *env)
 		free(env->player_coord);
 	return (EXIT_SUCCESS);
 }
-
-bool	floodfill(char **map, int x, int y, int *map_size)
-{
-	if (map[y][x] != '1')
-	{
-		if (y == 0)
-			return (false);
-		else if (map_size[y + 1] < x + 1 || map_size[y - 1] < x + 1)
-			return (false);
-		else if (map[y + 1][x] == ' ' || map[y + 1][x] == '\n')
-			return (false);
-		else if (map[y - 1][x] == ' ' || map[y - 1][x] == '\n')
-			return (false);
-		else if (map[y][x + 1] == ' ' || map[y][x + 1] == '\n')
-			return (false);
-		else if (map[y][x - 1] == ' ' || map[y][x - 1] == '\n')
-			return (false);
-	}
-	map[y][x] *= -1;
-	if (map[y + 1][x] != '1' && map[y + 1][x] > 0)
-		if (floodfill(map, x, y + 1, map_size) == false)
-			return (false);
-	if (map[y - 1][x] != '1' && map[y - 1][x] > 0)
-		if (floodfill(map, x, y - 1, map_size) == false)
-			return (false);
-	if (map[y][x + 1] != '1' && map[y][x + 1] > 0)
-		if (floodfill(map, x + 1, y, map_size) == false)
-			return (false);
-	if (map[y][x - 1] != '1' && map[y][x - 1] > 0)
-		if (floodfill(map, x - 1, y, map_size) == false)
-			return (false);
-	return (true);
-}
-
-bool	map_check(t_env *env)
-{
-	int	i;
-	int	j;
-
-	if (!floodfill(env->map, env->player_coord->x, env->player_coord->y, env->map_size))
-		return (parse_error(INT_MAP_IS_NOT_SURROUNDED));
-	i = -1;
-	while (env->map[++i])
-	{
-		j = -1;
-		while (env->map[i][++j])
-			if (env->map[i][j] < 0)
-				env->map[i][j] *= -1;
-	}
-	return (true);
-}
-
-void	set_map_size(t_env *env)
-{
-	int i;
-	int tmp;
-
-	i = 0;
-	while (env->map[i])
-		i++;
-	env->map_size = ft_calloc(i + 1, sizeof(int));
-	i = -1;
-	while (env->map[++i])
-	{
-		tmp = ft_strlen(env->map[i]);
-		if (tmp > env->map_max_width)
-			env->map_max_width = tmp;
-		env->map_size[i] = tmp;
-		ft_printf("%d\n", env->map_size[i]);
-	}
-	env->map_size[i] = 0;
-	return ;
-}
-
 
 int main(int ac, char **av)
 {
