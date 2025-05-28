@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 11:26:50 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 11:37:22 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,17 @@ bool	floodfill(char **map, int x, int y, int *map_size)
 	}
 	map[y][x] *= -1;
 	if (map[y + 1][x] != '1' && map[y + 1][x] > 0)
-		floodfill(map, x, y + 1, map_size);
+		if (floodfill(map, x, y + 1, map_size) == false)
+			return (false);
 	if (map[y - 1][x] != '1' && map[y - 1][x] > 0)
-		floodfill(map, x, y - 1, map_size);
+		if (floodfill(map, x, y - 1, map_size) == false)
+			return (false);
 	if (map[y][x + 1] != '1' && map[y][x + 1] > 0)
-		floodfill(map, x + 1, y, map_size);
+		if (floodfill(map, x + 1, y, map_size) == false)
+			return (false);
 	if (map[y][x - 1] != '1' && map[y][x - 1] > 0)
-		floodfill(map, x - 1, y, map_size);
+		if (floodfill(map, x - 1, y, map_size) == false)
+			return (false);
 	return (true);
 }
 
