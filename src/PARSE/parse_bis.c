@@ -22,12 +22,11 @@ bool	check_map_line(char *line, t_env *env, int y)
 		if (ft_strchr("01NSWE\n ", line[i]) == NULL)
 			return (parse_error(INT_MAP_INVALID_CHAR));
 		if (line[i] == 'N' || line[i] == 'W'
-				|| line[i] == 'E' || line[i] == 'O')
+			|| line[i] == 'E' || line[i] == 'O')
 		{
-			if (env->player_coord->x != -1)
+			if (env->player_coord->pos_x != -1)
 				return (parse_error(INT_DOUBLE_PLAYER_IN_MAP));
-			env->player_coord->x = i;
-			env->player_coord->y = y;
+			init_player_coords(env->player_coord, i, y, line[i]);
 		}
 	}
 	return (true);
@@ -47,7 +46,7 @@ bool	check_map_first_line(char *line, bool *map)
 	return (true);
 }
 
-t_parse_flag map_test(char *line, int i)
+t_parse_flag	map_test(char *line, int i)
 {
 	if (ft_strncmp(line + i, "NO", 2) == 0)
 		return (NO);

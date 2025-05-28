@@ -21,9 +21,10 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	i = 0;
 	if (flag <= 3)
 		line += 2;
-	else 
+	else
 		line += 1;
-	while(is_whitespace(line[i]))
+	while (is_whitespace(line[i]))
+
 		i++;
 	if ((line[i] != '.' || line[i + 1] != '/') && flag <= 3)
 		return (NULL);
@@ -67,22 +68,20 @@ char	*rgb_to_hex_char(char *buffer)
 	return (res);
 }
 
-bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
-	int img_w;
-	int img_h;
-
-	img_w = IMAGE_WIDTH;
-	img_h = IMAGE_HEIGHT;
 	if (flag == NO)
-		env->NO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->NO_image = mlx_load_png(buffer);
 	else if (flag == SO)
-		env->SO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->SO_image = mlx_load_png(buffer);
 	else if (flag == WE)
-		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->WE_image = mlx_load_png(buffer);
 	else if (flag == EA)
-		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
-	return (rgb_check(buffer, flag, env));
+		env->EA_image = mlx_load_png(buffer);
+	else if (flag == F)
+		ft_strcpy(env->F_color, buffer);
+	else if (flag == C)
+		ft_strcpy(env->C_color, buffer);
 }
 
 bool ft_handleline(char *line, t_env *env, bool *map)
@@ -114,7 +113,7 @@ bool ft_handleline(char *line, t_env *env, bool *map)
 	return (true);
 }
 
-bool parse(char *file, t_env *env, bool map)
+bool	parse(char *file, t_env *env, bool map)
 {
 	int		fd;
 	char	*buffer;

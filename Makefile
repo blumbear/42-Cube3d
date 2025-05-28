@@ -1,4 +1,5 @@
-NAME = cube3d
+NAME = cub3d
+
 
 CC = cc
 
@@ -6,7 +7,10 @@ CFLAGS =	-Wall -Wextra -Werror -g \
 			-IInclude 
 
 LFLAGS =	-Llib \
-			-lamoa -lmlx -lX11 -lXext
+			-lamoa -lmlx42 -ldl -lglfw -lXext \
+			-lX11 -lm -lpthread
+
+INC_ARCHIVES = lib/libmlx42.a
 
 ERROR_MANAGEMENT = error_handler
 
@@ -14,13 +18,19 @@ MAIN = main
 
 PARSE = parse parse_bis map parse_utils
 
+EXECUTING = exec_init rendering game_loop exec_utils \
+			raycasting raycasting_utils
+
 FILES = $(ERROR_MANAGEMENT) \
 $(MAIN) \
-$(PARSE)
+$(PARSE) \
+$(EXECUTING)
 
 SRC_FILES = $(addprefix src/ERROR_MANAGEMENT/, $(ERROR_MANAGEMENT)) \
 $(addprefix src/MAIN/, $(MAIN)) \
-$(addprefix src/PARSE/, $(PARSE))
+$(addprefix src/PARSE/, $(PARSE))\
+$(addprefix src/EXECUTING/, $(EXECUTING))
+
 
 OBJ_DIR = obj/
 
@@ -40,7 +50,8 @@ fclean : clean
 re: fclean all
 
 $(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) -o $@ $(OBJS) $(LFLAGS)
+	$(CC) -o $@ $(OBJS) $(INC_ARCHIVES) $(LFLAGS)
+
 
 $(OBJ_DIR):
 	mkdir $@
