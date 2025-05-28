@@ -1,20 +1,18 @@
 NAME = cube3d
 
-LIBAMOA = libamoa/libamoa.a
-
 CC = cc
 
 CFLAGS =	-Wall -Wextra -Werror -g \
 			-IInclude 
 
-LFLAGS =	-Llibamoa \
-			-lamoa -lreadline
+LFLAGS =	-Llib \
+			-lamoa -lmlx -lX11 -lXext
 
-ERROR_MANAGEMENT = parse_error
+ERROR_MANAGEMENT = error_handler
 
 MAIN = main
 
-PARSE = parse
+PARSE = parse parse_bis
 
 FILES = $(ERROR_MANAGEMENT) \
 $(MAIN) \
@@ -35,19 +33,14 @@ bonus: $(NAME_BONUS)
 
 clean :
 	rm -rf $(OBJ_DIR)
-	make fclean -C libamoa
 
 fclean : clean
 	rm -rf $(NAME)
-	make fclean -C libamoa
 
 re: fclean all
 
-$(NAME): $(OBJ_DIR) $(OBJS) $(LIBAMOA)
+$(NAME): $(OBJ_DIR) $(OBJS)
 	$(CC) -o $@ $(OBJS) $(LFLAGS)
-
-$(LIBAMOA):
-	make -C libamoa
 
 $(OBJ_DIR):
 	mkdir $@
