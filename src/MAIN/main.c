@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/14 16:55:36 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 11:26:50 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_env(t_env *env)
 	env->map = NULL;
 	env->map_size = NULL;
 	env->map_fill = false;
+	env->map_max_width = 0;
 	env->player_coord = ft_calloc(1, sizeof(t_coord));
 	env->player_coord->x = -1;
 	env->player_coord->y = -1;
@@ -109,6 +110,7 @@ bool	map_check(t_env *env)
 void	set_map_size(t_env *env)
 {
 	int i;
+	int tmp;
 
 	i = 0;
 	while (env->map[i])
@@ -117,7 +119,10 @@ void	set_map_size(t_env *env)
 	i = -1;
 	while (env->map[++i])
 	{
-		env->map_size[i] = ft_strlen(env->map[i]);
+		tmp = ft_strlen(env->map[i]);
+		if (tmp > env->map_max_width)
+			env->map_max_width = tmp;
+		env->map_size[i] = tmp;
 		ft_printf("%d\n", env->map_size[i]);
 	}
 	return ;
@@ -138,6 +143,7 @@ int main(int ac, char **av)
 	if (parse(av[1], &env, false) == false)
 		return (end_prog(&env));
 	set_map_size(&env);
+	ft_printf("map_max_width = %d\n", env.map_max_width);
 	if (map_check(&env) == false)
 		return (end_prog(&env));
 	ft_print_double_array(env.map, 0);

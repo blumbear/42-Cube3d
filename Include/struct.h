@@ -41,6 +41,7 @@ typedef struct s_env
 	char	**map;
 	int		*map_size;
 	bool	map_fill;
+	int		map_max_width;
 	//--------------------
 	t_coord	*player_coord;
 	bool	player;
