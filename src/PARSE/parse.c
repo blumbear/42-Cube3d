@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 14:07:48 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 15:02:44 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,6 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	return (buffer);
 }
 
-char	*int_to_hex(int nb, char *base)
-{
-	char *res;
-
-	res = ft_calloc(3, sizeof(char));
-	if (nb < 16)
-	{
-		res[0] = '0';
-		res[1] = base[nb];
-		return (res);
-	}
-	res[1] = base[nb % 16];
-	nb /= 16;
-	res[0] = base[nb];
-	return (res);
-}
-
 char	*rgb_to_hex_char(char *buffer)
 {
 	char	*res;
@@ -63,6 +46,10 @@ char	*rgb_to_hex_char(char *buffer)
 	int		int_tmp;
 	int		i;
 
+	i = -1;
+	while (buffer[++i])
+		if (!ft_isdigit(buffer[i]) && buffer[i] != ',')
+			return (NULL);
 	res = ft_calloc(10, sizeof(char));
 	res[0] = '0';
 	res[1] = 'x';
@@ -80,7 +67,7 @@ char	*rgb_to_hex_char(char *buffer)
 	return (res);
 }
 
-void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	int img_w;
 	int img_h;
@@ -95,12 +82,7 @@ void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
 	else if (flag == EA)
 		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
-	else if (flag == F)
-		// ft_strcpy(env->F_color, buffer);
-		env->F_color = rgb_to_hex_char(buffer);
-	else if (flag == C)
-		// ft_strcpy(env->C_color, buffer);
-		env->C_color = rgb_to_hex_char(buffer);
+	return (rgb_check(buffer, flag, env));
 }
 
 bool ft_handleline(char *line, t_env *env, bool *map)
@@ -121,12 +103,13 @@ bool ft_handleline(char *line, t_env *env, bool *map)
 		else if (check_map_first_line(line, map))
 			return (true);
 		else
-			return (false);
+			return (parse_error(INT_MAP_INVALID_PARAM));
 	}
 	buffer = fill_buffer(line + i, flag);
 	if (!buffer)
 		return (false);
-	fill_struct(buffer, flag, env);
+	if (!fill_struct(buffer, flag, env))
+		return (false);
 	free(buffer);
 	return (true);
 }
@@ -146,7 +129,7 @@ bool parse(char *file, t_env *env, bool map)
 		{
 			free(buffer);
 			close(fd);
-			return (parse_error(INT_MAP_INVALID_PARAM));
+			return (false);
 		}
 		else if (map == false)
 		{
