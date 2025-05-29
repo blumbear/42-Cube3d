@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 15:02:44 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 19:04:30 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	i = 0;
 	if (flag <= 3)
 		line += 2;
-	else 
+	else
 		line += 1;
-	while(is_whitespace(line[i]))
+	while (is_whitespace(line[i]))
+
 		i++;
 	if ((line[i] != '.' || line[i + 1] != '/') && flag <= 3)
 		return (NULL);
@@ -69,23 +70,47 @@ char	*rgb_to_hex_char(char *buffer)
 
 bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
-	int img_w;
-	int img_h;
+	char	*res;
+	char	**tmp_split;
+	char	*tmp;
+	int		int_tmp;
+	int		i;
 
-	img_w = IMAGE_WIDTH;
-	img_h = IMAGE_HEIGHT;
+	i = -1;
+	while (buffer[++i])
+		if (!ft_isdigit(buffer[i]) && buffer[i] != ',')
+			return (NULL);
+	res = ft_calloc(10, sizeof(char));
+	res[0] = '0';
+	res[1] = 'x';
+	i = -1;
+	tmp_split = ft_split(buffer, ',');
+	while (++i < 3)
+	{
+		int_tmp = ft_atoi(tmp_split[i]);
+		tmp = int_to_hex(int_tmp, "0123456789ABCDEF");
+		ft_strlcat(res, tmp, 9);
+		free(tmp);
+	}
+	ft_free_double_array(tmp_split);
+	res[9] = 0;
+	return (res);
+}
+
+bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+{
 	if (flag == NO)
-		env->NO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->NO_image = mlx_load_png(buffer);
 	else if (flag == SO)
-		env->SO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->SO_image = mlx_load_png(buffer);
 	else if (flag == WE)
-		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->WE_image = mlx_load_png(buffer);
 	else if (flag == EA)
-		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->EA_image = mlx_load_png(buffer);
 	return (rgb_check(buffer, flag, env));
 }
 
-bool ft_handleline(char *line, t_env *env, bool *map)
+bool	ft_handleline(char *line, t_env *env, bool *map)
 {
 	int				i;
 	char			*buffer;
@@ -114,7 +139,7 @@ bool ft_handleline(char *line, t_env *env, bool *map)
 	return (true);
 }
 
-bool parse(char *file, t_env *env, bool map)
+bool	parse(char *file, t_env *env, bool map)
 {
 	int		fd;
 	char	*buffer;

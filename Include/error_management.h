@@ -30,5 +30,8 @@
 
 int		arg_error(int error_flag);
 bool	parse_error(int error_flag);
+int		end_prog(t_env *env);
+void	clean_exit(t_env *env);
+
 
 # endif

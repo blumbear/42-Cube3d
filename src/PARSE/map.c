@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 12:59:09 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/28 19:06:18 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	set_map_size(t_env *env)
 	while (env->map[++i])
 	{
 		tmp = ft_strlen(env->map[i]);
-		if (tmp > env->map_max_width)
-			env->map_max_width = tmp;
+		if (tmp > env->map_width)
+			env->map_width = tmp;
 		env->map_size[i] = tmp;
 		ft_printf("%d\n", env->map_size[i]);
 	}
