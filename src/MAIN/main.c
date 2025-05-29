@@ -6,11 +6,11 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:29:52 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/29 23:38:10 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 bool	check_file_format(char *file_name)
 {

@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:23:29 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/29 23:35:57 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,17 @@ int	end_prog(t_env *env)
 
 void	clean_exit(t_env *env)
 {
+<<<<<<< HEAD
 	if (env->mlx)
 	{
 		mlx_close_window(env->mlx);
 		mlx_terminate(env->mlx);
 	}
 	end_prog(env);
+=======
+	mlx_close_window(env->mlx);
+	end_prog(env);
+	mlx_terminate(env->mlx);
+>>>>>>> main
 	exit(EXIT_SUCCESS);
 }
