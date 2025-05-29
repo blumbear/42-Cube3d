@@ -94,13 +94,34 @@ void	raycasting_west(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
  */
 float	calculate_dist(t_coord coords_a, t_coord coords_b);
 void	draw_rays(t_env *env);
+/**
+ * @brief The draw_3d function is used to draw the walls from the ray hit
+ * coordinates
+ * 
+ * @param env A pointer to the main env struct
+ * @param ray_coords The current ray's coordinates
+ * @param final_dist The distance between the player and the ray endpoint
+ * @param i The ray's angle
+ */
 void	draw_3d(t_env *env, t_coord ray_coords, float final_dist, int i);
 
 /*			Looping			*/
+/**
+ * @brief The main loop function is used by the mlx loop_hook
+ * it handles player input and calls the rendering function to create a frame
+ * to display every 1/FPS seconds.
+ * 
+ * @param param Used to pass the env struct through the loop_hook
+ */
 void	main_loop(void	*param);
 
 /*			Utils			*/
-void	print_player_coords(t_coord *coords);
+/**
+ * @brief Get the largest column size from the map
+ * 
+ * @param env A pointer to main env struct
+ * @return int The size of the largest column
+ */
 int		get_largest_map_column(t_env *env);
 
 #endif
