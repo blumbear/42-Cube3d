@@ -68,22 +68,28 @@ char	*rgb_to_hex_char(char *buffer)
 	return (res);
 }
 
-bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
+<<<<<<< HEAD
 	int	img_w;
 	int	img_h;
 
 	img_w = IMAGE_WIDTH;
 	img_h = IMAGE_HEIGHT;
+=======
+>>>>>>> 130d7e4 (Bartime (#7))
 	if (flag == NO)
-		env->NO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->NO_image = mlx_load_png(buffer);
 	else if (flag == SO)
-		env->SO_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->SO_image = mlx_load_png(buffer);
 	else if (flag == WE)
-		env->WE_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
+		env->WE_image = mlx_load_png(buffer);
 	else if (flag == EA)
-		env->EA_image = mlx_xpm_file_to_image(env->mlx, buffer, &img_w, &img_h);
-	return (rgb_check(buffer, flag, env));
+		env->EA_image = mlx_load_png(buffer);
+	else if (flag == F)
+		ft_strcpy(env->F_color, buffer);
+	else if (flag == C)
+		ft_strcpy(env->C_color, buffer);
 }
 
 bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)

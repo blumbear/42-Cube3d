@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include "Cub3d.h"
+=======
+#include "Cube3d.h"
+>>>>>>> 130d7e4 (Bartime (#7))
 
 void	init_window(t_env *env)
 {
@@ -14,6 +18,7 @@ void	exec_init(t_env *env)
 	init_window(env);
 	mlx_loop_hook(env->mlx, main_loop, env);
 }
+<<<<<<< HEAD
 
 void	init_player_coords(t_coord *coords, int i, int j, char dir)
 {
@@ -30,3 +35,5 @@ void	init_player_coords(t_coord *coords, int i, int j, char dir)
 	coords->delta_x = cos(coords->angle) * 5;
 	coords->delta_y = sin (coords->angle) * 5;
 }
+=======
+>>>>>>> 130d7e4 (Bartime (#7))

@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/05/29 23:14:02 by tom              ###   ########.fr       */
+=======
+/*   Updated: 2025/05/28 18:36:04 by bchedru          ###   ########.fr       */
+>>>>>>> 130d7e4 (Bartime (#7))
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3d.h"
+#include "Cube3d.h"
 
 bool	check_file_format(char *file_name)
 {
@@ -23,6 +27,7 @@ void	init_env(t_env *env)
 {
 	env->mlx = NULL;
 	env->texture_fill = -3;
+
 	env->F_color = NULL;
 	env->C_color = NULL;
 	env->color_fill = -1;
@@ -40,8 +45,9 @@ void	init_env(t_env *env)
 	env->EA_image = NULL;
 }
 
-int end_prog(t_env *env)
+int	main (int ac, char **av)
 {
+<<<<<<< HEAD
 	if (env->NO_image)
 		free(env->NO_image);
 	if (env->SO_image)
@@ -66,6 +72,9 @@ int end_prog(t_env *env)
 int main(int ac, char **av)
 {
 	t_env env;
+=======
+	t_env	env;
+>>>>>>> 130d7e4 (Bartime (#7))
 	if (ac < 2)
 		return (arg_error(INT_TOO_FEW_ARGUMENT));
 	else if (ac > 2)
@@ -76,9 +85,15 @@ int main(int ac, char **av)
 	if (parse(av[1], &env, false) == false)
 		clean_exit(&env);
 	set_map_size(&env);
+<<<<<<< HEAD
 	if (map_check(&env) == false)
 		clean_exit(&env);
 	exec_init(&env);
+=======
+	exec_init(&env);
+	if (map_check(&env) == false)
+		clean_exit(&env);
+>>>>>>> 130d7e4 (Bartime (#7))
 	ft_print_double_array(env.map, 0);
 	mlx_loop(env.mlx);
 	clean_exit(&env);

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include "Cub3d.h"
+=======
+#include "Cube3d.h"
+>>>>>>> 130d7e4 (Bartime (#7))
 
 void	render_frame(t_env *env)
 {

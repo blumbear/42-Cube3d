@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include "Cub3d.h"
+=======
+#include "Cube3d.h"
+>>>>>>> 130d7e4 (Bartime (#7))
 
 void	raycasting_south(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
 {
