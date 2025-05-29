@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,19 +6,13 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:13:21 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/29 23:23:29 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3d.h"
 
 bool	parse_error(int error_flag)
-=======
-#include "Cube3d.h"
-
-bool	parse_error(int error_flag)
-
->>>>>>> 130d7e4 (Bartime (#7))
 {
 	ft_putstr_fd(PARSE_ERROR_MSG, STDERR_FILENO);
 	if (error_flag == INT_MAP_INVALID_PARAM)
@@ -78,17 +71,11 @@ int	end_prog(t_env *env)
 
 void	clean_exit(t_env *env)
 {
-<<<<<<< HEAD
 	if (env->mlx)
 	{
 		mlx_close_window(env->mlx);
 		mlx_terminate(env->mlx);
 	}
 	end_prog(env);
-=======
-	mlx_close_window(env->mlx);
-	end_prog(env);
-	mlx_terminate(env->mlx);
->>>>>>> 130d7e4 (Bartime (#7))
 	exit(EXIT_SUCCESS);
 }
