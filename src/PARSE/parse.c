@@ -70,6 +70,35 @@ char	*rgb_to_hex_char(char *buffer)
 
 bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
+	char	*res;
+	char	**tmp_split;
+	char	*tmp;
+	int		int_tmp;
+	int		i;
+
+	i = -1;
+	while (buffer[++i])
+		if (!ft_isdigit(buffer[i]) && buffer[i] != ',')
+			return (NULL);
+	res = ft_calloc(10, sizeof(char));
+	res[0] = '0';
+	res[1] = 'x';
+	i = -1;
+	tmp_split = ft_split(buffer, ',');
+	while (++i < 3)
+	{
+		int_tmp = ft_atoi(tmp_split[i]);
+		tmp = int_to_hex(int_tmp, "0123456789ABCDEF");
+		ft_strlcat(res, tmp, 9);
+		free(tmp);
+	}
+	ft_free_double_array(tmp_split);
+	res[9] = 0;
+	return (res);
+}
+
+bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+{
 	if (flag == NO)
 		env->NO_image = mlx_load_png(buffer);
 	else if (flag == SO)

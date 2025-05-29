@@ -1,5 +1,5 @@
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -13,5 +13,7 @@
 # include "parse.h"
 # include "error_management.h"
 # include "exec.h"
+# include "mlx_int.h"
+# include "mlx.h"
 
 #endif

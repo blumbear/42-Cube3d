@@ -117,5 +117,4 @@ char			*int_to_hex(int nb, char *base);
 bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env);
 
 char	*rgb_to_hex_char(char *buffer);
-
 # endif

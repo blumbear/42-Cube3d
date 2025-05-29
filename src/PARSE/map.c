@@ -55,7 +55,7 @@ bool	map_check(t_env *env)
 	int	i;
 	int	j;
 
-	if (!floodfill(env->map, env->player_coord->pos_x, env->player_coord->pos_y, env->map_size))
+	if (!floodfill(env->map, env->player_coord->x, env->player_coord->y, env->map_size))
 		return (parse_error(INT_MAP_IS_NOT_SURROUNDED));
 	i = -1;
 	while (env->map[++i])

@@ -22,7 +22,6 @@ bool	check_file_format(char *file_name)
 void	init_env(t_env *env)
 {
 	env->texture_fill = -3;
-
 	env->F_color = NULL;
 	env->C_color = NULL;
 	env->color_fill = -1;
@@ -40,9 +39,32 @@ void	init_env(t_env *env)
 	env->EA_image = NULL;
 }
 
-int	main (int ac, char **av)
+int end_prog(t_env *env)
 {
-	t_env	env;
+	if (env->NO_image)
+		free(env->NO_image);
+	if (env->SO_image)
+		free(env->SO_image);
+	if (env->WE_image)
+		free(env->WE_image);
+	if (env->EA_image)
+		free(env->EA_image);
+	if (env->C_color)
+		free(env->C_color);
+	if (env->F_color)
+		free(env->F_color);
+	if (env->map)
+		ft_free_double_array(env->map);
+	if (env->map_size)
+		free(env->map_size);
+	if (env->player_coord)
+		free(env->player_coord);
+	return (EXIT_SUCCESS);
+}
+
+int main(int ac, char **av)
+{
+	t_env env;
 	if (ac < 2)
 		return (arg_error(INT_TOO_FEW_ARGUMENT));
 	else if (ac > 2)
