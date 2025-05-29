@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 19:06:18 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/29 22:48:52 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ bool	map_check(t_env *env)
 	int	i;
 	int	j;
 
-	if (!floodfill(env->map, env->player_coord->x, env->player_coord->y, env->map_size))
+	if (!floodfill(env->map, env->player_coord->pos_x, env->player_coord->pos_y
+			, env->map_size))
 		return (parse_error(INT_MAP_IS_NOT_SURROUNDED));
 	i = -1;
 	while (env->map[++i])
@@ -84,7 +85,6 @@ void	set_map_size(t_env *env)
 		if (tmp > env->map_width)
 			env->map_width = tmp;
 		env->map_size[i] = tmp;
-		ft_printf("%d\n", env->map_size[i]);
 	}
 	env->map_size[i] = 0;
 	return ;

@@ -60,8 +60,11 @@ int	end_prog(t_env *env)
 
 void	clean_exit(t_env *env)
 {
-	mlx_close_window(env->mlx);
+	if (env->mlx)
+	{
+		mlx_close_window(env->mlx);
+		mlx_terminate(env->mlx);
+	}
 	end_prog(env);
-	mlx_terminate(env->mlx);
 	exit(EXIT_SUCCESS);
 }
