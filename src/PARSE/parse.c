@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 15:02:44 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/29 23:37:40 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ char	*rgb_to_hex_char(char *buffer)
 
 void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
+	int	img_w;
+	int	img_h;
+
+	img_w = IMAGE_WIDTH;
+	img_h = IMAGE_HEIGHT;
 	if (flag == NO)
 		env->NO_image = mlx_load_png(buffer);
 	else if (flag == SO)
@@ -84,7 +89,20 @@ void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 		ft_strcpy(env->C_color, buffer);
 }
 
-bool ft_handleline(char *line, t_env *env, bool *map)
+bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+{
+	if (flag == NO)
+		env->NO_image = mlx_load_png(buffer);
+	else if (flag == SO)
+		env->SO_image = mlx_load_png(buffer);
+	else if (flag == WE)
+		env->WE_image = mlx_load_png(buffer);
+	else if (flag == EA)
+		env->EA_image = mlx_load_png(buffer);
+	return (rgb_check(buffer, flag, env));
+}
+
+bool	ft_handleline(char *line, t_env *env, bool *map)
 {
 	int				i;
 	char			*buffer;

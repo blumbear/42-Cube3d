@@ -14,8 +14,8 @@
 # define INT_WRONG_F_RGB 9
 # define INT_WRONG_C_RGB 10
 
-# define STR_TOO_FEW_ARGUMENT "Too few argument.\nUsage: ./Cube3d <test>.cub\n"
-# define STR_TOO_MANY_ARGUMENT "Too many argument.\nUsage: ./Cube3d <test>.cub\n"
+# define STR_TOO_FEW_ARGUMENT "Too few argument.\nUsage: ./Cub3d <test>.cub\n"
+# define STR_TOO_MANY_ARGUMENT "Too many argument.\nUsage: ./Cub3d <test>.cub\n"
 # define STR_INVALID_FILE_FORMAT "Invalid file format.\nThe file format must be \".cub\"\n"
 # define STR_INVALID_FILE "The File don't exist or can't be open.\n"
 # define STR_MAP_INVALID_PARAM "The file contains an invalid parameter.\n"

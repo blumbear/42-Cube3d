@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 18:36:04 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/29 23:38:10 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube3d.h"
+#include "Cub3d.h"
 
 bool	check_file_format(char *file_name)
 {
@@ -21,6 +21,7 @@ bool	check_file_format(char *file_name)
 
 void	init_env(t_env *env)
 {
+	env->mlx = NULL;
 	env->texture_fill = -3;
 
 	env->F_color = NULL;
@@ -43,6 +44,7 @@ void	init_env(t_env *env)
 int	main (int ac, char **av)
 {
 	t_env	env;
+
 	if (ac < 2)
 		return (arg_error(INT_TOO_FEW_ARGUMENT));
 	else if (ac > 2)
@@ -53,9 +55,9 @@ int	main (int ac, char **av)
 	if (parse(av[1], &env, false) == false)
 		clean_exit(&env);
 	set_map_size(&env);
-	exec_init(&env);
 	if (map_check(&env) == false)
 		clean_exit(&env);
+	exec_init(&env);
 	ft_print_double_array(env.map, 0);
 	mlx_loop(env.mlx);
 	clean_exit(&env);
