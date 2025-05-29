@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:16:14 by tom              ###   ########.fr       */
+/*   Updated: 2025/05/29 23:30:52 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,11 @@ char	*rgb_to_hex_char(char *buffer)
 
 void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
-<<<<<<< HEAD
 	int	img_w;
 	int	img_h;
 
 	img_w = IMAGE_WIDTH;
 	img_h = IMAGE_HEIGHT;
-=======
->>>>>>> 130d7e4 (Bartime (#7))
 	if (flag == NO)
 		env->NO_image = mlx_load_png(buffer);
 	else if (flag == SO)
