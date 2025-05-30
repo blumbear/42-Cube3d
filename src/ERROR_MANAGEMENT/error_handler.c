@@ -77,8 +77,5 @@ void	clean_exit(t_env *env)
 		mlx_terminate(env->mlx);
 	}
 	end_prog(env);
-	mlx_close_window(env->mlx);
-	end_prog(env);
-	mlx_terminate(env->mlx);
 	exit(EXIT_SUCCESS);
 }
