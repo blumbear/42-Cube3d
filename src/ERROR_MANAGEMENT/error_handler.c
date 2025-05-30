@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
+/*   Updated: 2025/05/30 02:23:29 by bchedru          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cub3d.h"
 
 bool	parse_error(int error_flag)
-
 {
 	ft_putstr_fd(PARSE_ERROR_MSG, STDERR_FILENO);
 	if (error_flag == INT_MAP_INVALID_PARAM)
@@ -60,8 +71,11 @@ int	end_prog(t_env *env)
 
 void	clean_exit(t_env *env)
 {
-	mlx_close_window(env->mlx);
+	if (env->mlx)
+	{
+		mlx_close_window(env->mlx);
+		mlx_terminate(env->mlx);
+	}
 	end_prog(env);
-	mlx_terminate(env->mlx);
 	exit(EXIT_SUCCESS);
 }
