@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:28:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/04 12:19:49 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/04 20:57:51 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_background(t_env *env)
 	}
 }
 
-void	draw_3d(t_env *env, t_coord ray_coords, float final_dist, int i)
+void	draw_3d(t_env *env, t_ray ray_coords, float final_dist, int i)
 {
 	float	line_height;
 	int		begin_line;

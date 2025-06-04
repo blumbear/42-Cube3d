@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/04 12:57:38 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/04 21:26:19 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ typedef struct s_ray
 	int		map_y;
 	int		x_offset;
 	int		y_offset;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	wall_dist;
+	int		step_x;
+	int		step_y;
+	int		side;
 }				t_ray;
 
 typedef struct s_coord
@@ -51,12 +57,6 @@ typedef struct s_coord
 	double	delta_x;
 	double	delta_y;
 	double	angle;
-	double	camera_x;
-	int		temp;
-	int		map_x;
-	int		map_y;
-	int		x_offset;
-	int		y_offset;
 }				t_coord;
 
 typedef struct s_env
@@ -83,7 +83,9 @@ typedef struct s_env
 	//--------------------
 	t_coord			*player_coord;
 	bool			player;
+	//--------------------
+	t_ray			ray_coords;
 //--------------------
 }				t_env;
 
-# endif
+#endif

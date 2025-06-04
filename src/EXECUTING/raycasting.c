@@ -6,18 +6,18 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:27:59 by tom               #+#    #+#             */
-/*   Updated: 2025/06/04 20:38:10 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/04 21:31:20 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3d.h"
 
-void	dof_loop(int dof, t_coord *ray_coords, t_env *env)
+void	dof_loop(int dof, t_ray *ray_coords, t_env *env)
 {
 	while (dof < DEPTH_OF_FIELD)
 	{
-		ray_coords->map_x = (int) ray_coords->pos_x >> 6;
-		ray_coords->map_y = (int) ray_coords->pos_y >> 6;
+		ray_coords->map_x = (int) ray_coords->dir_x >> 6;
+		ray_coords->map_y = (int) ray_coords->dir_y >> 6;
 		if ((ray_coords->map_x < env->map_width && ray_coords->map_x >= 0)
 			&& (ray_coords->map_y < env->map_height && ray_coords->map_y >= 0))
 		{
@@ -25,27 +25,27 @@ void	dof_loop(int dof, t_coord *ray_coords, t_env *env)
 				dof = DEPTH_OF_FIELD;
 			else
 			{
-				ray_coords->pos_x += ray_coords->x_offset;
-				ray_coords->pos_y += ray_coords->y_offset;
+				ray_coords->dir_x += ray_coords->x_offset;
+				ray_coords->dir_y += ray_coords->y_offset;
 				dof++;
 			}
 		}
-		if (ray_coords->pos_x < 0 || ray_coords->pos_x >= env->map_width * 64
-			|| ray_coords->pos_y < 0 || ray_coords->pos_y >= env->map_height
+		if (ray_coords->dir_x < 0 || ray_coords->dir_x >= env->map_width * 64
+			|| ray_coords->dir_y < 0 || ray_coords->dir_y >= env->map_height
 			* 64)
 			dof = DEPTH_OF_FIELD;
 
 	}
 }
 
-void	infinite_line(t_env *env, t_coord *ray_coords, int *dof)
+void	infinite_line(t_env *env, t_ray *ray_coords, int *dof)
 {
-	ray_coords->pos_x = env->player_coord->pos_x;
-	ray_coords->pos_y = env->player_coord->pos_y;
+	ray_coords->dir_x = env->player_coord->pos_x;
+	ray_coords->dir_y = env->player_coord->pos_y;
 	*dof = DEPTH_OF_FIELD;
 }
 
-void	vertical_checks(t_env *env, t_coord *ray_coords, t_coord *dist)
+void	vertical_checks(t_env *env, t_ray *ray_coords, t_coord *dist)
 {
 	int		dof;
 
@@ -62,7 +62,7 @@ void	vertical_checks(t_env *env, t_coord *ray_coords, t_coord *dist)
 	dist->temp = calculate_dist(*(env)->player_coord, *dist);
 }
 
-void	horizontal_checks(t_env *env, t_coord *ray_coords, t_coord *dist)
+void	horizontal_checks(t_env *env, t_ray *ray_coords, t_coord *dist)
 {
 	int		dof;
 
@@ -133,95 +133,113 @@ void	draw_rays(t_env *env)
 	}
 }
 
-void	calculate_ray_direction(t_env *env, int x, t_ray ray_coords)
+void	calculate_ray_direction(t_env *env, int x)
 {
-	ray_coords.camera_x = 2 * x / (double)WIDTH - 1;
-	ray_coords.dir_x = env->player_coord.dir_x + env->player_coord.plane_x
-		* ray_coords.camera_x;
-	ray_coords.dir_y = env->player_coord.dir_y + env->player_coord.plane_y
-		* ray_coords.camera_x;
-	ray_coords.map_x = (int)env->player_coord.pos_x;
-	ray_coords.map_y = (int)env->player_coord.pos_y;
-	ray_coords.deltadist_x = fabs(1 / ray_coords.dir_x);
-	ray_coords.deltadist_y = fabs(1 / ray_coords.dir_y);
+	env->ray_coords.camera_x = 2 * x / (double)WIDTH - 1;
+	env->ray_coords.dir_x = env->player_coord.dir_x + env->player_coord.plane_x
+		* env->ray_coords.camera_x;
+	env->ray_coords.dir_y = env->player_coord.dir_y + env->player_coord.plane_y
+		* env->ray_coords.camera_x;
+	env->ray_coords.map_x = (int)env->player_coord.pos_x;
+	env->ray_coords.map_y = (int)env->player_coord.pos_y;
+	env->ray_coords.delta_x = fabs(1 / env->ray_coords.dir_x);
+	env->ray_coords.delta_y = fabs(1 / env->ray_coords.dir_y);
 }
 
-void	init_dda(t_game *game)
+void	init_dda(t_env *env)
 {
-	if (game->ray.dir_x < 0)
+	if (env->ray_coords.dir_x < 0)
 	{
-		game->ray.step_x = -1;
-		game->ray.sidedist_x = (game->player.pos_x - game->ray.map_x)
-			* game->ray.deltadist_x;
+		env->ray_coords.step_x = -1;
+		env->ray_coords.side_dist_x = (env->player.pos_x
+				- env->ray_coords.map_x) * env_coords->ray_coords.delta_x;
 	}
 	else
 	{
-		game->ray.step_x = 1;
-		game->ray.sidedist_x = (game->ray.map_x + 1.0 - game->player.pos_x)
-			* game->ray.deltadist_x;
+		env->ray_coords.step_x = 1;
+		env->ray_coords.side_dist_x = (env->ray_coords.map_x + 1.0
+				- env->player.pos_x) * env->ray_coords.delta_x;
 	}
-	if (game->ray.dir_y < 0)
+	if (env->ray_coords.dir_y < 0)
 	{
-		game->ray.step_y = -1;
-		game->ray.sidedist_y = (game->player.pos_y - game->ray.map_y)
-			* game->ray.deltadist_y;
+		env->ray_coords.step_y = -1;
+		env->ray_coords.side_dist_y = (env->player.pos_y
+				- env->ray_coords.map_y) * env->ray_coords.delta_y;
 	}
 	else
 	{
-		game->ray.step_y = 1;
-		game->ray.sidedist_y = (game->ray.map_y + 1.0 - game->player.pos_y)
-			* game->ray.deltadist_y;
+		env->ray_coords.step_y = 1;
+		env->ray_coords.side_dist_y = (env->ray_coords.map_y + 1.0
+				- env->player.pos_y) * env->ray_coords.delta_y;
 	}
 }
 
-void	perform_dda(t_game *game)
+void	perform_dda(t_env *env)
 {
 	int	hit;
 
 	hit = 0;
 	while (hit == 0)
 	{
-		if (game->ray.sidedist_x < game->ray.sidedist_y)
+		if (env->ray_coords.side_dist_x < env->ray_coords.side_dist_y)
 		{
-			game->ray.sidedist_x += game->ray.deltadist_x;
-			game->ray.map_x += game->ray.step_x;
-			game->ray.side = 0;
+			env->ray_coords.side_dist_x += env->ray_coords.delta_x;
+			env->ray_coords.map_x += env->ray_coords.step_x;
+			env->ray_coords.side = 0;
 		}
 		else
 		{
-			game->ray.sidedist_y += game->ray.deltadist_y;
-			game->ray.map_y += game->ray.step_y;
-			game->ray.side = 1;
+			env->ray_coords.side_dist_y += env->ray_coords.delta_y;
+			env->ray_coords.map_y += env->ray_coords.step_y;
+			env->ray_coords.side = 1;
 		}
-		if (game->map[game->ray.map_y][game->ray.map_x] == '1'
-			|| game->map[game->ray.map_y][game->ray.map_x] == '2')
+		if (env->map[env->ray_coords.map_y][env->ray_coords.map_x] == '1')
 			hit = 1;
-		if (game->map[game->ray.map_y][game->ray.map_x] == '1')
-			game->ray.wall_door = 0;
-		if (game->map[game->ray.map_y][game->ray.map_x] == '2')
-			game->ray.wall_door = 1;
 	}
 }
 
-void	calculate_wall_distance(t_game *game, int *line_height, int *tex_x)
+void	calculate_wall_distance(t_env *env, int *wall_height, int *texture_x)
 {
 	double	wall_x;
 
-	if (game->ray.side == 0)
-		game->ray.wall_dist = (game->ray.map_x - game->player.pos_x + (1
-					- game->ray.step_x) / 2) / game->ray.dir_x;
+	if (env->ray_coords.side == 0)
+		env->ray_coords.wall_dist = (env->ray_coords.map_x - env->player.pos_x
+				+ (1 - env->ray_coords.step_x) / 2) / env->ray_coords.dir_x;
 	else
-		game->ray.wall_dist = (game->ray.map_y - game->player.pos_y + (1
-					- game->ray.step_y) / 2) / game->ray.dir_y;
-	if (game->ray.side == 0)
-		wall_x = game->player.pos_y + game->ray.wall_dist * game->ray.dir_y;
+		env->ray_coords.wall_dist = (env->ray_coords.map_y - env->player.pos_y
+				+ (1 - env->ray_coords.step_y) / 2) / env->ray_coords.dir_y;
+	if (env->ray_coords.side == 0)
+		wall_x = env->player.pos_y + env->ray_coords.wall_dist
+			* env->ray_coords.dir_y;
 	else
-		wall_x = game->player.pos_x + game->ray.wall_dist * game->ray.dir_x;
+		wall_x = env->player.pos_x + env->ray_coords.wall_dist
+			* env->ray_coords.dir_x;
 	wall_x -= floor(wall_x);
-	*tex_x = (int)(wall_x * (double)T_WIDTH);
-	if (game->ray.side == 0 && game->ray.dir_x > 0)
-		*tex_x = T_WIDTH - *tex_x - 1;
-	if (game->ray.side == 1 && game->ray.dir_y < 0)
-		*tex_x = T_WIDTH - *tex_x - 1;
-	*line_height = (int)(HEIGHT / game->ray.wall_dist);
+	*texture_x = (int)(wall_x * (double)T_WIDTH);
+	if (env->ray_coords.side == 0 && env->ray_coords.dir_x > 0)
+		*texture_x = T_WIDTH - *texture_x - 1;
+	if (env->ray_coords.side == 1 && env->ray_coords.dir_y < 0)
+		*texture_x = T_WIDTH - *texture_x - 1;
+	*wall_height = (int)(HEIGHT / env->ray_coords.wall_dist);
+}
+
+void	draw_wall_line(t_game *game, int x, int line_height, int tex_x)
+{
+	t_draw_limits	limits;
+	int				y;
+	int				d;
+	int				tex_y;
+	mlx_texture_t	*texture;
+
+	limits = calculate_draw_limits(line_height);
+	texture = select_texture(game);
+	y = limits.start;
+	while (y < limits.end)
+	{
+		d = y * 256 - HEIGHT * 128 + line_height * 128;
+		tex_y = ((d * T_HEIGHT) / line_height) / 256;
+		mlx_put_pixel(game->screen, x, y, get_texture_color(texture, tex_x,
+				tex_y));
+		y++;
+	}
 }
