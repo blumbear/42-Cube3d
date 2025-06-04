@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:28:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/30 02:24:25 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/04 12:19:49 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 void	render_frame(t_env *env)
 {
+	int	x;
 	static int	i = 0;
 
+	x = 0;
 	draw_background(env);
 	draw_rays(env);
+	while (x < WIDTH)
+	{
+		render_wall(env, x)
+		x++;
+	}
 	if (i == 0)
 		mlx_image_to_window(env->mlx, env->window, 0, 0);
 	i++;
@@ -70,4 +77,16 @@ void	draw_3d(t_env *env, t_coord ray_coords, float final_dist, int i)
 		mlx_put_pixel(env->window, x, y, 0x000000FF);
 		y++;
 	}
+}
+
+void	render_wall(t_env *env, int x)
+{
+	int	texture_x;
+	int	wall_height;
+
+	calculate_ray_direction(env, x);
+	init_dda(env);
+	perform_dda(env);
+	calculate_wall_distance(env, &wall_height, &texture_x);
+	draw_wall_line(env, x, wall_height, texture_x);
 }

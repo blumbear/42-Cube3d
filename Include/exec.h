@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:09 by bchedru           #+#    #+#             */
-/*   Updated: 2025/05/30 02:25:09 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/04 10:51:47 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_background(t_env *env);
  * @param ray_coords The current ray's data
  * @param map_coords The hitpoint data
  */
-void	raycasting_south(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+void	raycasting_south(t_env *env, t_coord *ray_coords);
 /**
  * @brief The raycasting_south and north functions are used to check if a wall
  * above or below the player (on the map) was hit by the ray
@@ -77,7 +77,7 @@ void	raycasting_south(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
  * @param ray_coords The current ray's data
  * @param map_coords The hitpoint data
  */
-void	raycasting_north(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+void	raycasting_north(t_env *env, t_coord *ray_coords);
 /**
  * @brief The raycasting_east and west functions are used to check if a wall
  * to the left or right of the player (on the map) was hit by the ray
@@ -86,7 +86,7 @@ void	raycasting_north(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
  * @param ray_coords The current ray's data
  * @param map_coords The hitpoint data
  */
-void	raycasting_east(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+void	raycasting_east(t_env *env, t_coord *ray_coords);
 /**
  * @brief The raycasting_east and west functions are used to check if a wall
  * to the left or right of the player (on the map) was hit by the ray
@@ -95,7 +95,7 @@ void	raycasting_east(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
  * @param ray_coords The current ray's data
  * @param map_coords The hitpoint data
  */
-void	raycasting_west(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
+void	raycasting_west(t_env *env, t_coord *ray_coords);
 /**
  * @brief This simple function uses the Pythagoras' theorem to calculate the
  * distance between the player and the wall hitpoint

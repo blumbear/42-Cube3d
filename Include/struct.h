@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/05/30 02:25:38 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/04 12:57:38 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ typedef enum s_parse_flag
 	NOTHING
 }			t_parse_flag ;
 
+typedef struct s_ray
+{
+	double	dir_x;
+	double	dir_y;
+	double	delta_x;
+	double	delta_y;
+	double	camera_x;
+	int		map_x;
+	int		map_y;
+	int		x_offset;
+	int		y_offset;
+}				t_ray;
+
 typedef struct s_coord
 {
 	double	pos_x;
@@ -38,16 +51,13 @@ typedef struct s_coord
 	double	delta_x;
 	double	delta_y;
 	double	angle;
+	double	camera_x;
 	int		temp;
+	int		map_x;
+	int		map_y;
+	int		x_offset;
+	int		y_offset;
 }				t_coord;
-
-typedef struct s_map_co
-{
-	int	pos_x;
-	int	pos_y;
-	int	x_offset;
-	int	y_offset;
-}				t_map_co;
 
 typedef struct s_env
 {
