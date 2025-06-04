@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:27:38 by tom               #+#    #+#             */
-/*   Updated: 2025/05/30 02:23:45 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/05/30 16:33:12 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,35 @@ void	move_backward(t_env *env)
 	t_coord	*coord;
 
 	coord = env->player_coord;
-	coord->pos_x -= coord->delta_x;
-	coord->pos_y -= coord->delta_y;
+	coord->pos_x -= coord->delta_x * MOVEMENT_SPEED;
+	coord->pos_y -= coord->delta_y * MOVEMENT_SPEED;
 }
 
-// void	move_left(t_env *env)
-// {
-// 	t_coord	*coord;
+void	move_left(t_env *env)
+{
+	t_coord	*coord;
+	double	new_x;
+	double	new_y;
 
-// 	coord = env->player_coord;
-// 	coord->pos_x += coord->delta_x;
-// 	coord->pos_y += coord->delta_y;
-// }
+	coord = env->player_coord;
+	new_x = coord->pos_y;
+	new_y = -coord->pos_x;
+	coord->pos_x += coord->delta_x * MOVEMENT_SPEED;
+	coord->pos_y += coord->delta_y * MOVEMENT_SPEED;
+}
+
+void	move_right(t_env *env)
+{
+	t_coord	*coord;
+	double	new_x;
+	double	new_y;
+
+	coord = env->player_coord;
+	new_x = -coord->pos_y;
+	new_y = coord->pos_x;
+	coord->pos_x += new_x * MOVEMENT_SPEED;
+	coord->pos_y += new_y * MOVEMENT_SPEED;
+}
 
 void	rotate_camera(t_coord *coord, bool right)
 {
@@ -69,10 +86,10 @@ void	keyhook(mlx_key_data_t keydata, void *param)
 		move_forward(env);
 	if (mlx_is_key_down(env->mlx, MLX_KEY_S))
 		move_backward(env);
-	// if (mlx_is_key_down(env->mlx, MLX_KEY_A))
-	// 	move_left(env);
-	// if (mlx_is_key_down(env->mlx, MLX_KEY_D))
-	// 	move_right(env);
+	if (mlx_is_key_down(env->mlx, MLX_KEY_A))
+		move_left(env);
+	if (mlx_is_key_down(env->mlx, MLX_KEY_D))
+		move_right(env);
 	if (mlx_is_key_down(env->mlx, MLX_KEY_LEFT))
 		rotate_camera(env->player_coord, 0);
 	if (mlx_is_key_down(env->mlx, MLX_KEY_RIGHT))
