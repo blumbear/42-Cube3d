@@ -49,8 +49,8 @@ typedef struct s_env
 	mlx_texture_t	*EA_image;
 	bool			texture_fill;
 //--------------------
-	char			*F_color;
-	char			*C_color;
+	uint32_t		F_color;
+	uint32_t		C_color;
 	bool			color_fill;
 	//--------------------
 	char			**map;

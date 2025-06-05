@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:38:10 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 17:14:25 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	init_env(t_env *env)
 {
 	env->mlx = NULL;
 	env->texture_fill = -3;
-
-	env->F_color = NULL;
-	env->C_color = NULL;
+	env->F_color = 0;
+	env->C_color = 0;
 	env->color_fill = -1;
 	env->map = NULL;
 	env->map_size = NULL;
@@ -57,8 +56,8 @@ int	main (int ac, char **av)
 	set_map_size(&env);
 	if (map_check(&env) == false)
 		clean_exit(&env);
-	exec_init(&env);
 	ft_print_double_array(env.map, 0);
+	exec_init(&env);
 	mlx_loop(env.mlx);
 	clean_exit(&env);
 }

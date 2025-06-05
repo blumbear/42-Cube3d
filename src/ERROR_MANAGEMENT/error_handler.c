@@ -56,10 +56,6 @@ int	end_prog(t_env *env)
 		free(env->WE_image);
 	if (env->EA_image)
 		free(env->EA_image);
-	if (env->C_color)
-		free(env->C_color);
-	if (env->F_color)
-		free(env->F_color);
 	if (env->map)
 		ft_free_double_array(env->map);
 	if (env->map_size)
