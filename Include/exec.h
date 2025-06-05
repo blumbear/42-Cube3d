@@ -23,6 +23,7 @@
 # define TEXTURE_DIMENSIONS 64
 
 /*			Initialization			*/
+
 /**
  * @brief The exec_init function simply initializes essential variables and
  * kickstarts the mlx42
@@ -59,6 +60,7 @@ void	raycast_start(t_env *env);
 void	raycast_loop(t_env *env);
 void	calculate_wall_distance(t_env *env, int *wall_height, int *texture_x);
 void	draw_wall_line(t_env *env, int x, int wall_height, int texture_x);
+
 /**
  * @brief The draw_background function is used to draw the "background" (floor 
  * and ceiling) of the frame

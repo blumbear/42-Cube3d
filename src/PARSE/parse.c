@@ -67,7 +67,7 @@ char	*rgb_to_hex_char(char *buffer)
 	return (res);
 }
 
-bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	if (flag == NO)
 		env->no_image = mlx_load_png(buffer);
