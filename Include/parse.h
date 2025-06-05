@@ -109,15 +109,6 @@ void			set_map_size(t_env *env);
 /*====================== Parse Utils ======================*/
 
 /**
- * @brief This function take a number between 0 and 256 and convert it in hexa.
- * 
- * @param nb The number.
- * @param base The hexa base.
- * @return char* The int in Hexa.
- */
-char			*int_to_hex(int nb, char *base);
-
-/**
  * @brief This function verify whether the rgb is correct.
  * 
  * @param buffer The buffer with the rgb value.
