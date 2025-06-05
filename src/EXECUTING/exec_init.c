@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:24:36 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 12:38:37 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:18:54 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,39 +48,11 @@ void	exec_init(t_env *env)
 void	init_player_coords(t_coord *coords, int i, int j, char dir)
 {
 	if (dir == 'N')
-	{
-		coords->pos_x = i + 0.5;
-		coords->pos_y = j + 0.5;
-		coords->dir_x = 0;
-		coords->dir_y = -1;
-		coords->plane_x = 0.66;
-		coords->plane_y = 0;
-	}
+		player_init_north(coords, i, j);
 	else if (dir == 'E')
-	{
-		coords->pos_x = i + 0.5;
-		coords->pos_y = j + 0.5;
-		coords->dir_x = 1;
-		coords->dir_y = 0;
-		coords->plane_x = 0;
-		coords->plane_y = -0.66;
-	}
+		player_init_east(coords, i, j);
 	else if (dir == 'S')
-	{
-		coords->pos_x = i + 0.5;
-		coords->pos_y = j + 0.5;
-		coords->dir_x = 0;
-		coords->dir_y = 1;
-		coords->plane_x = -0.66;
-		coords->plane_y = 0;
-	}
+		player_init_south(coords, i, j);
 	else
-	{
-		coords->pos_x = i + 0.5;
-		coords->pos_y = j + 0.5;
-		coords->dir_x = -1;
-		coords->dir_y = 0;
-		coords->plane_x = 0;
-		coords->plane_y = 0.66;
-	}
+		player_init_west(coords, i, j);
 }
