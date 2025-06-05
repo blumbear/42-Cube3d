@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:09:29 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 16:00:36 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:37:47 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*int_to_hex(int nb, char *base)
 {
-	char *res;
+	char	*res;
 
 	res = ft_calloc(3, sizeof(char));
 	if (nb < 16)

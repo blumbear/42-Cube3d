@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-/*   Updated: 2025/05/30 02:27:51 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:48:03 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ bool	map_check(t_env *env)
 
 void	set_map_size(t_env *env)
 {
-	int i;
-	int tmp;
+	int	i;
+	int	tmp;
 
 	i = 0;
 	while (env->map[i])

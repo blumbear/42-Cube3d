@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/05 16:00:36 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:51:51 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,13 @@ typedef enum s_parse_flag
 	F,
 	C,
 	NOTHING
-}			t_parse_flag ;
+}			t_parse_flag;
 
 typedef struct s_limits
 {
 	int	beginning;
 	int	end;
 }				t_limits;
-
 
 typedef struct s_ray
 {

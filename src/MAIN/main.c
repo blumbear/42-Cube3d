@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 16:00:36 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:35:33 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_env(t_env *env)
 {
 	env->mlx = NULL;
 	env->texture_fill = -3;
-
 	env->f_color = NULL;
 	env->c_color = NULL;
 	env->color_fill = -1;
@@ -41,7 +40,7 @@ void	init_env(t_env *env)
 	env->ea_image = NULL;
 }
 
-int	main (int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_env	env;
 

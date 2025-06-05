@@ -6,14 +6,14 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:31 by bchedru           #+#    #+#             */
-/*   Updated: 2025/05/30 02:29:14 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:51:28 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-#include "Cub3d.h"
+# include "Cub3d.h"
 
 /*====================== Parse Bis ======================*/
 
@@ -129,4 +129,4 @@ char			*int_to_hex(int nb, char *base);
 bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env);
 
 char	*rgb_to_hex_char(char *buffer);
-# endif
+#endif

@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 16:00:36 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:26:57 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	parse_error(int error_flag)
 	return (false);
 }
 
-int arg_error(int error_flag)
+int	arg_error(int error_flag)
 {
 	ft_putstr_fd(ARGUMENT_ERROR_MSG, STDERR_FILENO);
 	if (error_flag == INT_TOO_FEW_ARGUMENT)

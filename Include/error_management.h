@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:15 by bchedru           #+#    #+#             */
-/*   Updated: 2025/05/30 02:25:15 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:52:34 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,4 @@ bool	parse_error(int error_flag);
 int		end_prog(t_env *env);
 void	clean_exit(t_env *env);
 
-
-# endif
+#endif
