@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:28:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/04 20:57:51 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 13:33:20 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	render_frame(t_env *env)
 {
-	int	x;
+	int			x;
 	static int	i = 0;
 
 	x = 0;
 	draw_background(env);
-	draw_rays(env);
+	// draw_rays(env);
 	while (x < WIDTH)
 	{
-		render_wall(env, x)
+		render_wall(env, x);
 		x++;
 	}
 	if (i == 0)
