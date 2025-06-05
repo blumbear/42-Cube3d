@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:37:40 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 16:48:24 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	else
 		line += 1;
 	while (is_whitespace(line[i]))
-
 		i++;
 	if ((line[i] != '.' || line[i + 1] != '/') && flag <= 3)
 		return (NULL);
@@ -70,35 +69,14 @@ char	*rgb_to_hex_char(char *buffer)
 
 void	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
-	int	img_w;
-	int	img_h;
-
-	img_w = IMAGE_WIDTH;
-	img_h = IMAGE_HEIGHT;
 	if (flag == NO)
-		env->NO_image = mlx_load_png(buffer);
+		env->no_image = mlx_load_png(buffer);
 	else if (flag == SO)
-		env->SO_image = mlx_load_png(buffer);
+		env->so_image = mlx_load_png(buffer);
 	else if (flag == WE)
-		env->WE_image = mlx_load_png(buffer);
+		env->we_image = mlx_load_png(buffer);
 	else if (flag == EA)
-		env->EA_image = mlx_load_png(buffer);
-	else if (flag == F)
-		ft_strcpy(env->F_color, buffer);
-	else if (flag == C)
-		ft_strcpy(env->C_color, buffer);
-}
-
-bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
-{
-	if (flag == NO)
-		env->NO_image = mlx_load_png(buffer);
-	else if (flag == SO)
-		env->SO_image = mlx_load_png(buffer);
-	else if (flag == WE)
-		env->WE_image = mlx_load_png(buffer);
-	else if (flag == EA)
-		env->EA_image = mlx_load_png(buffer);
+		env->ea_image = mlx_load_png(buffer);
 	return (rgb_check(buffer, flag, env));
 }
 

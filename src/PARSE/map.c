@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/29 23:14:32 by tom              ###   ########.fr       */
-=======
-/*   Updated: 2025/05/28 12:59:09 by tom              ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2025/06/05 16:48:03 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +71,8 @@ bool	map_check(t_env *env)
 
 void	set_map_size(t_env *env)
 {
-	int i;
-	int tmp;
+	int	i;
+	int	tmp;
 
 	i = 0;
 	while (env->map[i])

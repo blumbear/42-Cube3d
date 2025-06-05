@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:35:57 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 16:26:57 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	parse_error(int error_flag)
 	return (false);
 }
 
-int arg_error(int error_flag)
+int	arg_error(int error_flag)
 {
 	ft_putstr_fd(ARGUMENT_ERROR_MSG, STDERR_FILENO);
 	if (error_flag == INT_TOO_FEW_ARGUMENT)
@@ -48,18 +48,18 @@ int arg_error(int error_flag)
 
 int	end_prog(t_env *env)
 {
-	if (env->NO_image)
-		free(env->NO_image);
-	if (env->SO_image)
-		free(env->SO_image);
-	if (env->WE_image)
-		free(env->WE_image);
-	if (env->EA_image)
-		free(env->EA_image);
-	if (env->C_color)
-		free(env->C_color);
-	if (env->F_color)
-		free(env->F_color);
+	if (env->no_image)
+		free(env->no_image);
+	if (env->so_image)
+		free(env->so_image);
+	if (env->we_image)
+		free(env->we_image);
+	if (env->ea_image)
+		free(env->ea_image);
+	if (env->c_color)
+		free(env->c_color);
+	if (env->f_color)
+		free(env->f_color);
 	if (env->map)
 		ft_free_double_array(env->map);
 	if (env->map_size)
@@ -71,17 +71,11 @@ int	end_prog(t_env *env)
 
 void	clean_exit(t_env *env)
 {
-<<<<<<< HEAD
 	if (env->mlx)
 	{
 		mlx_close_window(env->mlx);
 		mlx_terminate(env->mlx);
 	}
 	end_prog(env);
-=======
-	mlx_close_window(env->mlx);
-	end_prog(env);
-	mlx_terminate(env->mlx);
->>>>>>> main
 	exit(EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:09:29 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 15:02:51 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 16:37:47 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*int_to_hex(int nb, char *base)
 {
-	char *res;
+	char	*res;
 
 	res = ft_calloc(3, sizeof(char));
 	if (nb < 16)
@@ -33,8 +33,8 @@ bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env)
 {
 	if (flag == F)
 	{
-		env->F_color = rgb_to_hex_char(buffer);
-		if (env->F_color == NULL)
+		env->f_color = rgb_to_hex_char(buffer);
+		if (env->f_color == NULL)
 		{
 			free(buffer);
 			return (parse_error(INT_WRONG_F_RGB));
@@ -42,8 +42,8 @@ bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env)
 	}
 	else if (flag == C)
 	{
-		env->C_color = rgb_to_hex_char(buffer);
-		if (env->C_color == NULL)
+		env->c_color = rgb_to_hex_char(buffer);
+		if (env->c_color == NULL)
 		{
 			free(buffer);
 			return (parse_error(INT_WRONG_C_RGB));

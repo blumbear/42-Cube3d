@@ -19,7 +19,7 @@ MAIN = main
 PARSE = parse parse_bis map parse_utils
 
 EXECUTING = exec_init rendering game_loop exec_utils \
-			raycasting raycasting_utils
+			raycasting raycasting_utils player_movement
 
 FILES = $(ERROR_MANAGEMENT) \
 $(MAIN) \

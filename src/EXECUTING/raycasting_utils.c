@@ -3,65 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:27:50 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:36:52 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 16:18:22 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3d.h"
 
-void	raycasting_south(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
+t_limits	calculate_limits(int wall_height)
 {
-	float	tan_inverse;
+	t_limits	limits;
 
-	tan_inverse = -1 / tan(ray_coords->angle);
-	ray_coords->pos_y = (((int)ray_coords->pos_y >> 6) << 6) - 0.0001;
-	ray_coords->pos_x = (env->player_coord->pos_x - ray_coords->pos_x)
-		* tan_inverse + env->player_coord->pos_x;
-	map_coords->y_offset = -64;
-	map_coords->x_offset = -map_coords->y_offset * tan_inverse;
+	limits.beginning = -wall_height / 2 + HEIGHT / 2;
+	if (limits.beginning < 0)
+		limits.beginning = 0;
+	limits.end = wall_height / 2 + HEIGHT / 2;
+	if (limits.end >= HEIGHT)
+		limits.end = HEIGHT - 1;
+	return (limits);
 }
 
-void	raycasting_north(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
+void	player_init_north(t_coord *coords, int i, int j)
 {
-	float	tan_inverse;
-
-	tan_inverse = -1 / tan(ray_coords->angle);
-	ray_coords->pos_y = (((int)ray_coords->pos_y >> 6) << 6) + 64;
-	ray_coords->pos_x = (env->player_coord->pos_x - ray_coords->pos_x)
-		* tan_inverse + env->player_coord->pos_x;
-	map_coords->y_offset = 64;
-	map_coords->x_offset = -map_coords->y_offset * tan_inverse;
+	coords->pos_x = i + 0.5;
+	coords->pos_y = j + 0.5;
+	coords->dir_x = 0;
+	coords->dir_y = -1;
+	coords->plane_x = 0.66;
+	coords->plane_y = 0;
 }
 
-void	raycasting_west(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
+void	player_init_south(t_coord *coords, int i, int j)
 {
-	float	tan_negative;
-
-	tan_negative = -tan(ray_coords->angle);
-	ray_coords->pos_x = (((int)ray_coords->pos_x >> 6) << 6) - 0.0001;
-	ray_coords->pos_y = (env->player_coord->pos_y - ray_coords->pos_y)
-		* tan_negative + env->player_coord->pos_y;
-	map_coords->x_offset = -64;
-	map_coords->y_offset = -map_coords->x_offset * tan_negative;
+	coords->pos_x = i + 0.5;
+	coords->pos_y = j + 0.5;
+	coords->dir_x = 0;
+	coords->dir_y = 1;
+	coords->plane_x = -0.66;
+	coords->plane_y = 0;
 }
 
-void	raycasting_east(t_env *env, t_coord *ray_coords, t_map_co *map_coords)
+void	player_init_west(t_coord *coords, int i, int j)
 {
-	float	tan_negative;
-
-	tan_negative = -tan(ray_coords->angle);
-	ray_coords->pos_x = (((int)ray_coords->pos_x >> 6) << 6) + 64;
-	ray_coords->pos_y = (env->player_coord->pos_y - ray_coords->pos_y)
-		* tan_negative + env->player_coord->pos_y;
-	map_coords->x_offset = 64;
-	map_coords->y_offset = -map_coords->x_offset * tan_negative;
+	coords->pos_x = i + 0.5;
+	coords->pos_y = j + 0.5;
+	coords->dir_x = -1;
+	coords->dir_y = 0;
+	coords->plane_x = 0;
+	coords->plane_y = 0.66;
 }
 
-float	calculate_dist(t_coord coords_a, t_coord coords_b)
+void	player_init_east(t_coord *coords, int i, int j)
 {
-	return (sqrt((coords_b.pos_x * coords_a.pos_x)
-			+ (coords_b.pos_y * coords_a.pos_y)));
+	coords->pos_x = i + 0.5;
+	coords->pos_y = j + 0.5;
+	coords->dir_x = 1;
+	coords->dir_y = 0;
+	coords->plane_x = 0;
+	coords->plane_y = -0.66;
 }
