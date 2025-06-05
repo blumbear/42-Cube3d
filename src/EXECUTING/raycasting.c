@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:27:59 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 16:17:08 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 18:46:21 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,21 +106,21 @@ void	calculate_wall_distance(t_env *env, int *wall_height, int *texture_x)
 
 void	draw_wall_line(t_env *env, int x, int wall_height, int texture_x)
 {
-	t_limits	limits;
-	int			y;
-	// int			dist;
-	// int			texture_y;
-	// mlx_texture_t	*texture;
-	(void)texture_x;
+	t_limits		limits;
+	int				y;
+	int				dist;
+	int				texture_y;
+	mlx_texture_t	*texture;
 
 	limits = calculate_limits(wall_height);
-	// texture = select_texture(env);
+	texture = select_texture(env);
 	y = limits.beginning;
 	while (y < limits.end)
 	{
-		// dist = y * 256 - HEIGHT * 128 + wall_height * 128;
-		// texture_y = ((dist * TEXTURE_DIMENSIONS) / wall_height) / 256;
-		mlx_put_pixel(env->window, x, y, 0xFFFFFFFF);
+		dist = y * 256 - HEIGHT * 128 + wall_height * 128;
+		texture_y = ((dist * TEXTURE_DIMENSIONS) / wall_height) / 256;
+		mlx_put_pixel(env->window, x, y, get_pixel_color(texture, texture_x,
+				texture_y));
 		y++;
 	}
 }
