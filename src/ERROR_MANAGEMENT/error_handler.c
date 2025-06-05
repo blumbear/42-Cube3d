@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 16:26:57 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 19:13:16 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,18 @@ int	arg_error(int error_flag)
 
 int	end_prog(t_env *env)
 {
-	if (env->NO_image)
-		free(env->NO_image);
-	if (env->SO_image)
-		free(env->SO_image);
-	if (env->WE_image)
-		free(env->WE_image);
-	if (env->EA_image)
-		free(env->EA_image);
+	if (env->no_image)
+		mlx_delete_texture(env->no_image);
+	if (env->so_image)
+		mlx_delete_texture(env->so_image);
+	if (env->we_image)
+		mlx_delete_texture(env->we_image);
+	if (env->ea_image)
+		mlx_delete_texture(env->ea_image);
+	if (env->c_color)
+		free(env->c_color);
+	if (env->f_color)
+		free(env->f_color);
 	if (env->map)
 		ft_free_double_array(env->map);
 	if (env->map_size)
