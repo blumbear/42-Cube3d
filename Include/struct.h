@@ -74,10 +74,10 @@ typedef struct s_env
 	mlx_t			*mlx;
 	mlx_image_t		*window;
 //--------------------
-	mlx_texture_t	*no_image;
-	mlx_texture_t	*so_image;
-	mlx_texture_t	*we_image;
-	mlx_texture_t	*ea_image;
+	mlx_texture_t	*NO_image;
+	mlx_texture_t	*SO_image;
+	mlx_texture_t	*WE_image;
+	mlx_texture_t	*EA_image;
 	bool			texture_fill;
 //--------------------
 	char			*f_color;

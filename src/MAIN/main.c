@@ -23,8 +23,8 @@ void	init_env(t_env *env)
 {
 	env->mlx = NULL;
 	env->texture_fill = -3;
-	env->f_color = NULL;
-	env->c_color = NULL;
+	env->F_color = 0;
+	env->C_color = 0;
 	env->color_fill = -1;
 	env->map = NULL;
 	env->map_size = NULL;
@@ -56,8 +56,8 @@ int	main(int ac, char **av)
 	set_map_size(&env);
 	if (map_check(&env) == false)
 		clean_exit(&env);
-	exec_init(&env);
 	ft_print_double_array(env.map, 0);
+	exec_init(&env);
 	mlx_loop(env.mlx);
 	clean_exit(&env);
 }
