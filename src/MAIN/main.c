@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:38:10 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 16:00:36 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	init_env(t_env *env)
 	env->mlx = NULL;
 	env->texture_fill = -3;
 
-	env->F_color = NULL;
-	env->C_color = NULL;
+	env->f_color = NULL;
+	env->c_color = NULL;
 	env->color_fill = -1;
 	env->map = NULL;
 	env->map_size = NULL;
@@ -35,10 +35,10 @@ void	init_env(t_env *env)
 	env->player_coord->pos_x = -1;
 	env->player_coord->pos_y = -1;
 	env->player = false;
-	env->NO_image = NULL;
-	env->SO_image = NULL;
-	env->WE_image = NULL;
-	env->EA_image = NULL;
+	env->no_image = NULL;
+	env->so_image = NULL;
+	env->we_image = NULL;
+	env->ea_image = NULL;
 }
 
 int	main (int ac, char **av)

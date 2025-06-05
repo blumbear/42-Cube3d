@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/05 01:23:02 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:00:36 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ typedef struct s_env
 	mlx_t			*mlx;
 	mlx_image_t		*window;
 //--------------------
-	mlx_texture_t	*NO_image;
-	mlx_texture_t	*SO_image;
-	mlx_texture_t	*WE_image;
-	mlx_texture_t	*EA_image;
+	mlx_texture_t	*no_image;
+	mlx_texture_t	*so_image;
+	mlx_texture_t	*we_image;
+	mlx_texture_t	*ea_image;
 	bool			texture_fill;
 //--------------------
-	char			*F_color;
-	char			*C_color;
+	char			*f_color;
+	char			*c_color;
 	bool			color_fill;
 	//--------------------
 	char			**map;

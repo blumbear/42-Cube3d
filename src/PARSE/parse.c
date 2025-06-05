@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/05/30 02:30:39 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:00:05 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ char	*rgb_to_hex_char(char *buffer)
 bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	if (flag == NO)
-		env->NO_image = mlx_load_png(buffer);
+		env->no_image = mlx_load_png(buffer);
 	else if (flag == SO)
-		env->SO_image = mlx_load_png(buffer);
+		env->so_image = mlx_load_png(buffer);
 	else if (flag == WE)
-		env->WE_image = mlx_load_png(buffer);
+		env->we_image = mlx_load_png(buffer);
 	else if (flag == EA)
-		env->EA_image = mlx_load_png(buffer);
+		env->ea_image = mlx_load_png(buffer);
 	return (rgb_check(buffer, flag, env));
 }
 

@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:09 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/05 13:34:22 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 16:18:33 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,16 @@ int		get_largest_map_column(t_env *env);
 
 
 void	render_wall(t_env *env, int x);
-void	calculate_ray_direction(t_env *env, int x);
-void	init_dda(t_env *env);
-void	perform_dda(t_env *env);
+void	set_ray_dir(t_env *env, int x);
+void	raycast_start(t_env *env);
+void	raycast_loop(t_env *env);
 void	calculate_wall_distance(t_env *env, int *wall_height, int *texture_x);
 void	draw_wall_line(t_env *env, int x, int wall_height, int texture_x);
 t_limits	calculate_limits(int wall_height);
 void	init_ray(t_env *env);
+void	player_init_north(t_coord *coords, int i, int j);
+void	player_init_south(t_coord *coords, int i, int j);
+void	player_init_east(t_coord *coords, int i, int j);
+void	player_init_west(t_coord *coords, int i, int j);
 
 #endif
