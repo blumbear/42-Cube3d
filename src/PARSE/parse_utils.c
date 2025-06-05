@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:09:29 by tom               #+#    #+#             */
 /*   Updated: 2025/06/05 17:09:01 by tom              ###   ########.fr       */
@@ -43,7 +43,6 @@ bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env)
 		}
 	}
 	else if (flag == C)
-	{
 		env->C_color = rgb_to_uint_32(buffer);
 		if (env->C_color == 0)
 		{

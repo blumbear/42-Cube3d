@@ -1,18 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/30 02:25:09 by bchedru           #+#    #+#             */
+/*   Updated: 2025/06/05 16:49:46 by bchedru          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EXEC_H
 # define EXEC_H
 
-# define PI 3.1415926535
 # define HEIGHT 512
 # define WIDTH 1024
 # define FPS 60
 # define CEILING_COLOR 0x0000FFFF
 # define FLOOR_COLOR 0x7B7B7BFF
 # define ROTATION_SPEED 0.1
-# define MOVEMENT_SPEED 0.75
-# define DEPTH_OF_FIELD 8
-# define DEG_TO_RAD 0.0174533
-# define CUBE_SIZE 64
-
+# define MOVEMENT_SPEED 0.1
+# define TEXTURE_DIMENSIONS 64
 
 /*			Initialization			*/
 
@@ -33,6 +41,11 @@ void	exec_init(t_env *env);
  * @param dir The direction the player is facing when the game launches
  */
 void	init_player_coords(t_coord *coords, int i, int j, char dir);
+void	init_ray(t_env *env);
+void	player_init_north(t_coord *coords, int i, int j);
+void	player_init_south(t_coord *coords, int i, int j);
+void	player_init_east(t_coord *coords, int i, int j);
+void	player_init_west(t_coord *coords, int i, int j);
 
 /*			Rendering			*/
 /**
@@ -42,6 +55,12 @@ void	init_player_coords(t_coord *coords, int i, int j, char dir);
  * @param env A pointer to the main env struct
  */
 void	render_frame(t_env *env);
+void	render_wall(t_env *env, int x);
+void	raycast_start(t_env *env);
+void	raycast_loop(t_env *env);
+void	calculate_wall_distance(t_env *env, int *wall_height, int *texture_x);
+void	draw_wall_line(t_env *env, int x, int wall_height, int texture_x);
+
 /**
  * @brief The draw_background function is used to draw the "background" (floor 
  * and ceiling) of the frame
@@ -49,60 +68,31 @@ void	render_frame(t_env *env);
  * @param env A pointer to the main env struct
  */
 void	draw_background(t_env *env);
-/**
- * @brief The raycasting_south and north functions are used to check if a wall
- * above or below the player (on the map) was hit by the ray
- * 
- * @param env A pointer to the main env struct
- * @param ray_coords The current ray's data
- * @param map_coords The hitpoint data
- */
-void	raycasting_south(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
-/**
- * @brief The raycasting_south and north functions are used to check if a wall
- * above or below the player (on the map) was hit by the ray
- * 
- * @param env A pointer to the main env struct
- * @param ray_coords The current ray's data
- * @param map_coords The hitpoint data
- */
-void	raycasting_north(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
-/**
- * @brief The raycasting_east and west functions are used to check if a wall
- * to the left or right of the player (on the map) was hit by the ray
- * 
- * @param env A pointer to the main env struct
- * @param ray_coords The current ray's data
- * @param map_coords The hitpoint data
- */
-void	raycasting_east(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
-/**
- * @brief The raycasting_east and west functions are used to check if a wall
- * to the left or right of the player (on the map) was hit by the ray
- * 
- * @param env A pointer to the main env struct
- * @param ray_coords The current ray's data
- * @param map_coords The hitpoint data
- */
-void	raycasting_west(t_env *env, t_coord *ray_coords, t_map_co *map_coords);
-/**
- * @brief This simple function uses the Pythagoras' theorem to calculate the
- * distance between the player and the wall hitpoint
- * 
- * @param coords_a 
- * @param coords_b 
- * @return float The calculated distance
- */
-float	calculate_dist(t_coord coords_a, t_coord coords_b);
 
-void	draw_rays(t_env *env);
-void	draw_3d(t_env *env, t_coord ray_coords, float final_dist, int i);
-
-/*			Looping			*/
+/*			Gameplay			*/
+/**
+ * @brief The main loop function is used by the mlx loop_hook
+ * it handles player input and calls the rendering function to create a frame
+ * to display every 1/FPS seconds.
+ * 
+ * @param param Used to pass the env struct through the loop_hook
+ */
 void	main_loop(void	*param);
+void	rotate_camera(t_env *env, double angle);
+void	move_right(t_env *env);
+void	move_left(t_env *env);
+void	move_backward(t_env *env);
+void	move_forward(t_env *env);
 
 /*			Utils			*/
-void	print_player_coords(t_coord *coords);
-int		get_largest_map_column(t_env *env);
+/**
+ * @brief Get the largest column size from the map
+ * 
+ * @param env A pointer to main env struct
+ * @return int The size of the largest column
+ */
+int			get_largest_map_column(t_env *env);
+void		set_ray_dir(t_env *env, int x);
+t_limits	calculate_limits(int wall_height);
 
 #endif

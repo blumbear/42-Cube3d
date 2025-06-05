@@ -112,7 +112,7 @@ bool			ft_isprint(int c);
  * @return true 'c' is a white space.
  * @return false 'c' is not a white space.
  */
-bool			is_whitespace(char	c);
+bool			is_whitespace(char c);
 
 /**
  * @brief If `c` is a letter, converts it to lowercase.

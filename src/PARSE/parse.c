@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
 /*   Updated: 2025/06/05 17:14:58 by tom              ###   ########.fr       */
@@ -24,7 +24,6 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	else
 		line += 1;
 	while (is_whitespace(line[i]))
-
 		i++;
 	if ((line[i] != '.' || line[i + 1] != '/') && flag <= 3)
 		return (NULL);
