@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:24:36 by tom               #+#    #+#             */
-/*   Updated: 2025/05/30 02:24:30 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 12:38:37 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,27 @@ void	init_window(t_env *env)
 	env->window = mlx_new_image(env->mlx, WIDTH, HEIGHT);
 }
 
+void	init_ray(t_env *env)
+{
+	env->ray_coords.camera_x = 0.0;
+	env->ray_coords.dir_x = env->player_coord->dir_x;
+	env->ray_coords.dir_y = env->player_coord->dir_y;
+	env->ray_coords.map_x = (int)env->player_coord->pos_x;
+	env->ray_coords.map_y = (int)env->player_coord->pos_y;
+	env->ray_coords.step_x = 0;
+	env->ray_coords.step_y = 0;
+	env->ray_coords.side_dist_x = 0.0;
+	env->ray_coords.side_dist_y = 0.0;
+	env->ray_coords.delta_x = 0.0;
+	env->ray_coords.delta_y = 0.0;
+	env->ray_coords.wall_dist = 0.0;
+	env->ray_coords.side = -1;
+}
+
 void	exec_init(t_env *env)
 {
 	env->map_height = get_largest_map_column(env);
+	init_ray(env);
 	init_window(env);
 	mlx_loop_hook(env->mlx, main_loop, env);
 }
@@ -30,15 +48,39 @@ void	exec_init(t_env *env)
 void	init_player_coords(t_coord *coords, int i, int j, char dir)
 {
 	if (dir == 'N')
-		coords->angle = PI / 2;
+	{
+		coords->pos_x = i + 0.5;
+		coords->pos_y = j + 0.5;
+		coords->dir_x = 0;
+		coords->dir_y = -1;
+		coords->plane_x = 0.66;
+		coords->plane_y = 0;
+	}
 	else if (dir == 'E')
-		coords->angle = PI * 2;
+	{
+		coords->pos_x = i + 0.5;
+		coords->pos_y = j + 0.5;
+		coords->dir_x = 1;
+		coords->dir_y = 0;
+		coords->plane_x = 0;
+		coords->plane_y = -0.66;
+	}
 	else if (dir == 'S')
-		coords->angle = (3 * PI) / 2;
+	{
+		coords->pos_x = i + 0.5;
+		coords->pos_y = j + 0.5;
+		coords->dir_x = 0;
+		coords->dir_y = 1;
+		coords->plane_x = -0.66;
+		coords->plane_y = 0;
+	}
 	else
-		coords->angle = PI;
-	coords->pos_x = (double)i;
-	coords->pos_y = (double)j;
-	coords->delta_x = cos(coords->angle) * 5;
-	coords->delta_y = sin (coords->angle) * 5;
+	{
+		coords->pos_x = i + 0.5;
+		coords->pos_y = j + 0.5;
+		coords->dir_x = -1;
+		coords->dir_y = 0;
+		coords->plane_x = 0;
+		coords->plane_y = 0.66;
+	}
 }
