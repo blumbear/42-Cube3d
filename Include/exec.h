@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:09 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/04 20:58:00 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 13:34:22 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@
 # define CEILING_COLOR 0x0000FFFF
 # define FLOOR_COLOR 0x7B7B7BFF
 # define ROTATION_SPEED 0.1
-# define MOVEMENT_SPEED 0.75
+# define MOVEMENT_SPEED 0.1
 # define DEPTH_OF_FIELD 8
-# define DEG_TO_RAD 0.0174533
-# define CUBE_SIZE 64
-
+# define TEXTURE_DIMENSIONS 64
 
 /*			Initialization			*/
 /**
@@ -135,5 +133,15 @@ void	main_loop(void	*param);
  * @return int The size of the largest column
  */
 int		get_largest_map_column(t_env *env);
+
+
+void	render_wall(t_env *env, int x);
+void	calculate_ray_direction(t_env *env, int x);
+void	init_dda(t_env *env);
+void	perform_dda(t_env *env);
+void	calculate_wall_distance(t_env *env, int *wall_height, int *texture_x);
+void	draw_wall_line(t_env *env, int x, int wall_height, int texture_x);
+t_limits	calculate_limits(int wall_height);
+void	init_ray(t_env *env);
 
 #endif
