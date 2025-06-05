@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/04 21:26:19 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/05 01:23:02 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef enum s_parse_flag
 	C,
 	NOTHING
 }			t_parse_flag ;
+
+typedef struct s_limits
+{
+	int	beginning;
+	int	end;
+}				t_limits;
+
 
 typedef struct s_ray
 {
@@ -56,7 +63,10 @@ typedef struct s_coord
 	double	pos_y;
 	double	delta_x;
 	double	delta_y;
-	double	angle;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }				t_coord;
 
 typedef struct s_env
