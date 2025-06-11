@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 19:13:16 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:29:58 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ bool	parse_error(int error_flag)
 		ft_putstr_fd(STR_WRONG_F_RGB, STDERR_FILENO);
 	else if (error_flag == INT_WRONG_C_RGB)
 		ft_putstr_fd(STR_WRONG_C_RGB, STDERR_FILENO);
+	else if (error_flag == INT_C_COLOR_NOT_DEFINE)
+		ft_putstr_fd(STR_C_COLOR_NOT_DEFINE, STDERR_FILENO);
+	else if (error_flag == INT_F_COLOR_NOT_DEFINE)
+		ft_putstr_fd(STR_F_COLOR_NOT_DEFINE, STDERR_FILENO);
 	return (false);
 }
 
@@ -56,10 +60,6 @@ int	end_prog(t_env *env)
 		mlx_delete_texture(env->we_image);
 	if (env->ea_image)
 		mlx_delete_texture(env->ea_image);
-	if (env->c_color)
-		free(env->c_color);
-	if (env->f_color)
-		free(env->f_color);
 	if (env->map)
 		ft_free_double_array(env->map);
 	if (env->map_size)

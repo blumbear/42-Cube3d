@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:14:32 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 15:30:13 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ bool	map_check(t_env *env)
 			if (env->map[i][j] < 0)
 				env->map[i][j] *= -1;
 	}
+	if (env->c_color == 0)
+		return (parse_error(INT_C_COLOR_NOT_DEFINE));
+	else if (env->f_color == 0)
+		return (parse_error(INT_F_COLOR_NOT_DEFINE));
 	return (true);
 }
 
