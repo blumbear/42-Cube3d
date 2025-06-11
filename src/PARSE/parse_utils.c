@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:09:29 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 17:09:01 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 19:07:59 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@ bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env)
 {
 	if (flag == F)
 	{
-		env->F_color = rgb_to_uint_32(buffer);
-		if (env->F_color == 0)
+		env->f_color = rgb_to_uint_32(buffer);
+		if (env->f_color == 0)
 		{
 			free(buffer);
 			return (parse_error(INT_WRONG_F_RGB));
 		}
 	}
 	else if (flag == C)
-		env->C_color = rgb_to_uint_32(buffer);
-		if (env->C_color == 0)
+	{
+		env->c_color = rgb_to_uint_32(buffer);
+		if (env->c_color == 0)
 		{
 			free(buffer);
 			return (parse_error(INT_WRONG_C_RGB));
