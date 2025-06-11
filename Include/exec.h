@@ -89,8 +89,11 @@ void	move_forward(t_env *env);
  * @param env A pointer to main env struct
  * @return int The size of the largest column
  */
-int			get_largest_map_column(t_env *env);
-void		set_ray_dir(t_env *env, int x);
+int		get_largest_map_column(t_env *env);
+void	set_ray_dir(t_env *env, int x);
 t_limits	calculate_limits(int wall_height);
+mlx_texture_t	*select_texture(t_env *env);
+uint32_t	get_pixel_color(mlx_texture_t *texture, int texture_x,
+			int texture_y);
 
 #endif
