@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:09 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/05 19:17:13 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:14:04 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # define HEIGHT 512
 # define WIDTH 1024
 # define FPS 60
-# define CEILING_COLOR 0x0000FFFF
-# define FLOOR_COLOR 0x7B7B7BFF
 # define ROTATION_SPEED 0.1
 # define MOVEMENT_SPEED 0.1
 # define TEXTURE_DIMENSIONS 64

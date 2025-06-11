@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/05 16:51:51 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:28:28 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,14 @@ typedef struct s_env
 	mlx_t			*mlx;
 	mlx_image_t		*window;
 //--------------------
-	mlx_texture_t	*NO_image;
-	mlx_texture_t	*SO_image;
-	mlx_texture_t	*WE_image;
-	mlx_texture_t	*EA_image;
+	mlx_texture_t	*no_image;
+	mlx_texture_t	*so_image;
+	mlx_texture_t	*we_image;
+	mlx_texture_t	*ea_image;
 	bool			texture_fill;
 //--------------------
-	char			*f_color;
-	char			*c_color;
+	uint32_t		f_color;
+	uint32_t		c_color;
 	bool			color_fill;
 	//--------------------
 	char			**map;

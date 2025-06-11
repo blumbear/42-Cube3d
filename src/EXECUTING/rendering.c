@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:28:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 19:15:43 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:28:28 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	draw_background(t_env *env)
 	{
 		x = -1;
 		while (++x < WIDTH)
-			mlx_put_pixel(env->window, x, y, CEILING_COLOR);
+			mlx_put_pixel(env->window, x, y, env->c_color);
 		y++;
 	}
 	while (y < HEIGHT)
 	{
 		x = -1;
 		while (++x < WIDTH)
-			mlx_put_pixel(env->window, x, y, FLOOR_COLOR);
+			mlx_put_pixel(env->window, x, y, env->f_color);
 		y++;
 	}
 }

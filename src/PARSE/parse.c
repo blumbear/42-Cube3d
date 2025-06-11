@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 17:14:58 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/05 19:07:30 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	if (flag == NO)
-		env->NO_image = mlx_load_png(buffer);
+		env->no_image = mlx_load_png(buffer);
 	else if (flag == SO)
-		env->SO_image = mlx_load_png(buffer);
+		env->so_image = mlx_load_png(buffer);
 	else if (flag == WE)
-		env->WE_image = mlx_load_png(buffer);
+		env->we_image = mlx_load_png(buffer);
 	else if (flag == EA)
-		env->EA_image = mlx_load_png(buffer);
+		env->ea_image = mlx_load_png(buffer);
 	return (rgb_check(buffer, flag, env));
 }
 
