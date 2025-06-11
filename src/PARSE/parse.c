@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 19:07:30 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 15:42:46 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,29 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
 {
 	if (flag == NO)
+	{
 		env->no_image = mlx_load_png(buffer);
+		if (!env->no_image)
+			return (parse_error(INT_IMAGE_NOT_FOUND));
+	}
 	else if (flag == SO)
+	{
 		env->so_image = mlx_load_png(buffer);
+		if (!env->so_image)
+			return (parse_error(INT_IMAGE_NOT_FOUND));
+	}
 	else if (flag == WE)
+	{
 		env->we_image = mlx_load_png(buffer);
+		if (!env->we_image)
+			return (parse_error(INT_IMAGE_NOT_FOUND));
+	}
 	else if (flag == EA)
+	{
 		env->ea_image = mlx_load_png(buffer);
+		if (!env->ea_image)
+			return (parse_error(INT_IMAGE_NOT_FOUND));
+	}
 	return (rgb_check(buffer, flag, env));
 }
 
@@ -75,7 +91,7 @@ bool	ft_handleline(char *line, t_env *env, bool *map)
 	if (!buffer)
 		return (false);
 	if (!fill_struct(buffer, flag, env))
-		return (false);
+		return (free(buffer), false);
 	free(buffer);
 	return (true);
 }

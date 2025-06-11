@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 15:29:58 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 15:40:45 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ bool	parse_error(int error_flag)
 		ft_putstr_fd(STR_C_COLOR_NOT_DEFINE, STDERR_FILENO);
 	else if (error_flag == INT_F_COLOR_NOT_DEFINE)
 		ft_putstr_fd(STR_F_COLOR_NOT_DEFINE, STDERR_FILENO);
+	else if (error_flag == INT_IMAGE_NOT_FOUND)
+		ft_putstr_fd(STR_IMAGE_NOT_FOUND, STDERR_FILENO);
 	return (false);
 }
 

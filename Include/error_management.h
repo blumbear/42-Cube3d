@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:15 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/11 15:28:43 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 15:38:31 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define INT_WRONG_C_RGB 10
 # define INT_C_COLOR_NOT_DEFINE 11
 # define INT_F_COLOR_NOT_DEFINE 12
+# define INT_IMAGE_NOT_FOUND 13
 
 # define STR_TOO_FEW_ARGUMENT "Too few argument.\nUsage: ./Cub3d <test>.cub\n"
 # define STR_TOO_MANY_ARGUMENT "Too many argument.\nUsage: ./Cub3d <test>.cub\n"
@@ -40,6 +41,7 @@
 # define STR_WRONG_C_RGB "The RGB code of the ceil is not correct.\n"
 # define STR_C_COLOR_NOT_DEFINE "The file does not contain any rgb code for the ceil.\n"
 # define STR_F_COLOR_NOT_DEFINE "The file does not contain any rgb code for the floor.\n"
+# define STR_IMAGE_NOT_FOUND "One of the walls' image could not be found.\n"
 
 # define PARSE_ERROR_MSG "PARSE_ERROR: "
 # define ARGUMENT_ERROR_MSG "ARGUMENTS_ERROR: "
