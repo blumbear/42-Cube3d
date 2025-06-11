@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:09:29 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 15:28:28 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 17:56:52 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ uint32_t	rgb_to_uint_32(char *buffer)
 	rgba |= (uint32_t)ft_atoi(tmp_split[1]) << 16;
 	rgba |= (uint32_t)ft_atoi(tmp_split[2]) << 8;
 	rgba |= (uint32_t)255;
+	ft_free_double_array(tmp_split);
 	return (rgba);
 }
 
