@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 14:28:15 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 15:29:58 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,6 @@ int	end_prog(t_env *env)
 		mlx_delete_texture(env->we_image);
 	if (env->ea_image)
 		mlx_delete_texture(env->ea_image);
-	if (env->c_color)
-		free(env->c_color);
-	if (env->f_color)
-		free(env->f_color);
 	if (env->map)
 		ft_free_double_array(env->map);
 	if (env->map_size)
