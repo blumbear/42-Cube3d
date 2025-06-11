@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:15 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/05 16:52:34 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 14:30:26 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define INT_MAP_IS_NOT_SURROUNDED 8
 # define INT_WRONG_F_RGB 9
 # define INT_WRONG_C_RGB 10
+# define INT_C_COLOR_NOT_DEFINE 11
+# define INT_F_COLOR_NOT_DEFINE 12
 
 # define STR_TOO_FEW_ARGUMENT "Too few argument.\nUsage: ./Cub3d <test>.cub\n"
 # define STR_TOO_MANY_ARGUMENT "Too many argument.\nUsage: ./Cub3d <test>.cub\n"
@@ -36,6 +38,8 @@
 # define STR_MAP_IS_NOT_SURROUNDED "The area around the player is not fully enclosed by walls.\n"
 # define STR_WRONG_F_RGB "The RGB code of the floor is not correct.\n"
 # define STR_WRONG_C_RGB "The RGB code of the ceil is not correct.\n"
+# define STR_C_COLOR_NOT_DEFINE "The file does not contain any rgb code for the ceil.\n"
+# define STR_F_COLOR_NOT_DEFINE "The file does not contain any rgb code for the floor.\n"
 
 # define PARSE_ERROR_MSG "PARSE_ERROR: "
 # define ARGUMENT_ERROR_MSG "ARGUMENTS_ERROR: "

@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/05 19:07:30 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 14:28:15 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ bool	parse_error(int error_flag)
 		ft_putstr_fd(STR_WRONG_F_RGB, STDERR_FILENO);
 	else if (error_flag == INT_WRONG_C_RGB)
 		ft_putstr_fd(STR_WRONG_C_RGB, STDERR_FILENO);
+	else if (error_flag == INT_C_COLOR_NOT_DEFINE)
+		ft_putstr_fd(STR_C_COLOR_NOT_DEFINE, STDERR_FILENO);
+	else if (error_flag == INT_F_COLOR_NOT_DEFINE)
+		ft_putstr_fd(STR_F_COLOR_NOT_DEFINE, STDERR_FILENO);
 	return (false);
 }
 
