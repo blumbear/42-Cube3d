@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:09 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/11 17:09:41 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:32:07 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void			calculate_wall_distance(t_env *env, int *wall_height,
  * @param wall_height The wall's height to be reached
  * @param texture_x The x coordinate to get pixel from the texture
  */
-void			draw_wall_line(t_env *env, int x, int wall_height
+void			draw_wall_line(t_env *env, int x, int wall_height,
 					int texture_x);
 
 /**
