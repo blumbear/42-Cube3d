@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 15:28:28 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 16:57:59 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int ac, char **av)
 	else if (ac > 2)
 		return (arg_error(INT_TOO_MANY_ARGUMENT));
 	else if (check_file_format(av[1]) == false)
-		return (arg_error(INT_INVALID_FILE_FORMAT));
+		return (arg_error(INT_INVLD_FORMAT));
 	init_env(&env);
 	if (parse(av[1], &env, false) == false)
 		clean_exit(&env);

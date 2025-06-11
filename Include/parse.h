@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:31 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/05 16:51:28 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 17:10:14 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void			set_map_size(t_env *env);
  * @return true The rgb is correct.
  * @return false The rgb is not correct.
  */
-bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env);
+bool			rgb_check(char *buffer, t_parse_flag flag, t_env *env);
 
-char	*rgb_to_hex_char(char *buffer);
+char			*rgb_to_hex_char(char *buffer);
 #endif

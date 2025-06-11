@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 15:30:13 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 16:59:04 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	map_check(t_env *env)
 
 	if (!floodfill(env->map, env->player_coord->pos_x, env->player_coord->pos_y
 			, env->map_size))
-		return (parse_error(INT_MAP_IS_NOT_SURROUNDED));
+		return (parse_error(INT_NT_SURND));
 	i = -1;
 	while (env->map[++i])
 	{
@@ -67,9 +67,9 @@ bool	map_check(t_env *env)
 				env->map[i][j] *= -1;
 	}
 	if (env->c_color == 0)
-		return (parse_error(INT_C_COLOR_NOT_DEFINE));
+		return (parse_error(INT_C_COLOR_N_DEF));
 	else if (env->f_color == 0)
-		return (parse_error(INT_F_COLOR_NOT_DEFINE));
+		return (parse_error(INT_F_COLOR_N_DEF));
 	return (true);
 }
 
