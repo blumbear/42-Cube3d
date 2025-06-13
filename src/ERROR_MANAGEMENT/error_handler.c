@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/13 16:13:36 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/13 16:15:03 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	parse_error(int error_flag)
 		ft_putstr_fd(F_COLOR_N_DEF, STDERR_FILENO);
 	else if (error_flag == INT_IMAGE_NOT_FOUND)
 		ft_putstr_fd(IMAGE_NOT_FOUND, STDERR_FILENO);
-	else 
+	else
 		parse_error_bis(error_flag);
 	return (false);
 }
