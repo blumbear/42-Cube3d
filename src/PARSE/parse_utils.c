@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:09:29 by tom               #+#    #+#             */
-/*   Updated: 2025/06/12 15:22:33 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/13 16:02:40 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,26 @@ bool	rgb_split_check(char **split)
 	{
 		if (!split[i])
 			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	check_rgb_code(char **darray)
+{
+	int	i;
+	int	tmp;
+
+	i = 0;
+	while (i < 3)
+	{
+		tmp = ft_atoi(darray[i]);
+		if (tmp < 0 || tmp > 255)
+		{
+			ft_free_double_array(darray);
+			ft_printf("here");
+			return (false);
+		}
 		i++;
 	}
 	return (true);
@@ -43,6 +63,8 @@ uint32_t	rgb_to_uint_32(char *buffer)
 		ft_free_double_array(tmp_split);
 		return (0);
 	}
+	if (!check_rgb_code(tmp_split))
+		return (0);
 	rgba |= (uint32_t)ft_atoi(tmp_split[0]) << 24;
 	rgba |= (uint32_t)ft_atoi(tmp_split[1]) << 16;
 	rgba |= (uint32_t)ft_atoi(tmp_split[2]) << 8;
@@ -57,19 +79,13 @@ bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env)
 	{
 		env->f_color = rgb_to_uint_32(buffer);
 		if (env->f_color == 0)
-		{
-			free(buffer);
 			return (parse_error(INT_WRONG_F_RGB));
-		}
 	}
 	else if (flag == C)
 	{
 		env->c_color = rgb_to_uint_32(buffer);
 		if (env->c_color == 0)
-		{
-			free(buffer);
 			return (parse_error(INT_WRONG_C_RGB));
-		}
 	}
 	return (true);
 }
