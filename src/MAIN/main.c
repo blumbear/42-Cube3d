@@ -55,7 +55,6 @@ int	main(int ac, char **av)
 	set_map_size(&env);
 	if (map_check(&env) == false)
 		clean_exit(&env);
-	ft_print_double_array(env.map, 0);
 	exec_init(&env);
 	mlx_loop(env.mlx);
 	clean_exit(&env);
