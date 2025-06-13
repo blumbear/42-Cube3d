@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 16:59:04 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:40:45 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ bool	parse_error(int error_flag)
 		ft_putstr_fd(C_COLOR_N_DEF, STDERR_FILENO);
 	else if (error_flag == INT_F_COLOR_N_DEF)
 		ft_putstr_fd(F_COLOR_N_DEF, STDERR_FILENO);
-	return (false);
+  else if (error_flag == INT_IMAGE_NOT_FOUND)
+		ft_putstr_fd(STR_IMAGE_NOT_FOUND, STDERR_FILENO);
+  return (false);
 }
 
 int	arg_error(int error_flag)
