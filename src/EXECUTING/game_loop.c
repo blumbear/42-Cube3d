@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:27:38 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:36:43 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 16:54:05 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	main_loop(void	*param)
 	current_time = mlx_get_time() * 1000;
 	if (current_time - last_rendering >= 1000 / FPS)
 	{
-		// printf("player x = %f\n player y = %f\n", env->player_coord->pos_x, env->player_coord->pos_y);
 		render_frame(env);
 		last_rendering = current_time;
 	}
