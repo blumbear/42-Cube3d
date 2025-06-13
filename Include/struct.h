@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/11 15:28:28 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 16:53:08 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
-
-# define IMAGE_WIDTH 24
-# define IMAGE_HEIGHT 24
-# define FILENAME "Fichier à mettre"
-# define COLOR "Couleur à mettre"
-# define DEG_TO_RAD 0.0174533
-# define CUBE_SIZE 64
 
 typedef enum s_parse_flag
 {

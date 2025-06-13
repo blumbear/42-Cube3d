@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 15:29:58 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/11 16:59:04 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ bool	parse_error(int error_flag)
 {
 	ft_putstr_fd(PARSE_ERROR_MSG, STDERR_FILENO);
 	if (error_flag == INT_MAP_INVALID_PARAM)
-		ft_putstr_fd(STR_MAP_INVALID_PARAM, STDERR_FILENO);
+		ft_putstr_fd(MAP_INVALID_PARAM, STDERR_FILENO);
 	else if (error_flag == INT_MAP_INVALID_PARAM)
-		ft_putstr_fd(STR_MAP_INVALID_PARAM, STDERR_FILENO);
+		ft_putstr_fd(MAP_INVALID_PARAM, STDERR_FILENO);
 	else if (error_flag == INT_MAP_INVALID_CHAR)
-		ft_putstr_fd(STR_MAP_INVALID_CHAR, STDERR_FILENO);
+		ft_putstr_fd(MAP_INVALID_CHAR, STDERR_FILENO);
 	else if (error_flag == INT_DOUBLE_PLAYER_IN_MAP)
-		ft_putstr_fd(STR_DOUBLE_PLAYER_IN_MAP, STDERR_FILENO);
-	else if (error_flag == INT_MAP_IS_NOT_SURROUNDED)
-		ft_putstr_fd(STR_MAP_IS_NOT_SURROUNDED, STDERR_FILENO);
+		ft_putstr_fd(DOUBLE_PLAYER_IN_MAP, STDERR_FILENO);
+	else if (error_flag == INT_NT_SURND)
+		ft_putstr_fd(NT_SURND, STDERR_FILENO);
 	else if (error_flag == INT_WRONG_F_RGB)
-		ft_putstr_fd(STR_WRONG_F_RGB, STDERR_FILENO);
+		ft_putstr_fd(WRONG_F_RGB, STDERR_FILENO);
 	else if (error_flag == INT_WRONG_C_RGB)
-		ft_putstr_fd(STR_WRONG_C_RGB, STDERR_FILENO);
-	else if (error_flag == INT_C_COLOR_NOT_DEFINE)
-		ft_putstr_fd(STR_C_COLOR_NOT_DEFINE, STDERR_FILENO);
-	else if (error_flag == INT_F_COLOR_NOT_DEFINE)
-		ft_putstr_fd(STR_F_COLOR_NOT_DEFINE, STDERR_FILENO);
+		ft_putstr_fd(WRONG_C_RGB, STDERR_FILENO);
+	else if (error_flag == INT_C_COLOR_N_DEF)
+		ft_putstr_fd(C_COLOR_N_DEF, STDERR_FILENO);
+	else if (error_flag == INT_F_COLOR_N_DEF)
+		ft_putstr_fd(F_COLOR_N_DEF, STDERR_FILENO);
 	return (false);
 }
 
@@ -40,13 +40,13 @@ int	arg_error(int error_flag)
 {
 	ft_putstr_fd(ARGUMENT_ERROR_MSG, STDERR_FILENO);
 	if (error_flag == INT_TOO_FEW_ARGUMENT)
-		ft_putstr_fd(STR_TOO_FEW_ARGUMENT, STDERR_FILENO);
+		ft_putstr_fd(TOO_FEW_ARGUMENT, STDERR_FILENO);
 	else if (error_flag == INT_TOO_MANY_ARGUMENT)
-		ft_putstr_fd(STR_TOO_MANY_ARGUMENT, STDERR_FILENO);
-	else if (error_flag == INT_INVALID_FILE_FORMAT)
-		ft_putstr_fd(STR_INVALID_FILE_FORMAT, STDERR_FILENO);
+		ft_putstr_fd(TOO_MANY_ARGUMENT, STDERR_FILENO);
+	else if (error_flag == INT_INVLD_FORMAT)
+		ft_putstr_fd(INVLD_FORMAT, STDERR_FILENO);
 	else if (error_flag == INT_INVALID_FILE)
-		ft_putstr_fd(STR_INVALID_FILE, STDERR_FILENO);
+		ft_putstr_fd(INVALID_FILE, STDERR_FILENO);
 	return (EXIT_SUCCESS);
 }
 
