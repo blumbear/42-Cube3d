@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 16:57:59 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:39:28 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	init_env(t_env *env)
 	env->player_coord = ft_calloc(1, sizeof(t_coord));
 	env->player_coord->pos_x = -1;
 	env->player_coord->pos_y = -1;
-	env->player = false;
 	env->no_image = NULL;
 	env->so_image = NULL;
 	env->we_image = NULL;

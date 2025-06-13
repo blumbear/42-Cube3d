@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 16:59:04 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:40:30 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ bool	map_check(t_env *env)
 	int	i;
 	int	j;
 
+	if (env->player_coord->pos_x == -1)
+		return (parse_error(INT_MISSING_PLAYER));
 	if (!floodfill(env->map, env->player_coord->pos_x, env->player_coord->pos_y
 			, env->map_size))
 		return (parse_error(INT_NT_SURND));

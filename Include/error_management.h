@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:15 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/11 15:38:31 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/13 15:38:10 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define INT_C_COLOR_N_DEF 11
 # define INT_F_COLOR_N_DEF 12
 # define INT_IMAGE_NOT_FOUND 13
+# define INT_MISSING_PLAYER 14
 
 # define TOO_FEW_ARGUMENT "Too few argument.\nUsage: ./Cub3d <test>.cub\n"
 # define TOO_MANY_ARGUMENT "Too many argument.\nUsage: ./Cub3d <test>.cub\n"
@@ -41,7 +42,8 @@
 # define WRONG_C_RGB "The RGB code of the ceil is not correct.\n"
 # define C_COLOR_N_DEF "The file does not contain any rgb code for the ceil.\n"
 # define F_COLOR_N_DEF "The file does not contain any rgb code for the floor.\n"
-# define STR_IMAGE_NOT_FOUND "One of the walls' image could not be found.\n"
+# define IMAGE_NOT_FOUND "One of the walls' image could not be found.\n"
+# define MISSING_PLAYER "The map has to contain one player.\n"
 
 # define PARSE_ERROR_MSG "PARSE_ERROR: "
 # define ARGUMENT_ERROR_MSG "ARGUMENTS_ERROR: "
