@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 15:42:46 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/13 16:20:34 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ bool	parse(char *file, t_env *env, bool map)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (false);
+		return (parse_error(INT_CANT_OPEN_FILE));
 	buffer = get_next_line(fd);
 	while (buffer && map == false)
 	{

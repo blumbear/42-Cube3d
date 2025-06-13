@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/13 16:15:03 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/13 16:21:25 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	parse_error_bis(int error_flag)
 		ft_putstr_fd(MISSING_PLAYER, STDERR_FILENO);
 	else if (error_flag == INT_MISSING_WALL_TEXTURE)
 		ft_putstr_fd(MSNG_W_TXTR, STDERR_FILENO);
+	else if (error_flag == INT_CANT_OPEN_FILE)
+		ft_putstr_fd(CT_OPEN_FILE, STDERR_FILENO);
 	return ;
 }
 
