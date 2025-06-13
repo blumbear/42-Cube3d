@@ -6,14 +6,12 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:15 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/11 15:38:31 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/13 15:27:12 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_MANAGEMENT_H
 # define ERROR_MANAGEMENT_H
-
-# define TEST_PRINT "HERE\n"
 
 # define INT_TOO_FEW_ARGUMENT 1
 # define INT_TOO_MANY_ARGUMENT 2

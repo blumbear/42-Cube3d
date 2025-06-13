@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 16:57:59 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:28:03 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int ac, char **av)
 	set_map_size(&env);
 	if (map_check(&env) == false)
 		clean_exit(&env);
-	ft_print_double_array(env.map, 0);
 	exec_init(&env);
 	mlx_loop(env.mlx);
 	clean_exit(&env);
