@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 12:52:58 by tom               #+#    #+#             */
-/*   Updated: 2025/06/13 15:40:30 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/13 16:11:08 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ bool	floodfill(char **map, int x, int y, int *map_size)
 	return (true);
 }
 
+bool	texture_check(t_env *env)
+{
+	if (env->no_image == NULL)
+		return (parse_error(INT_MISSING_WALL_TEXTURE));
+	if (env->so_image == NULL)
+		return (parse_error(INT_MISSING_WALL_TEXTURE));
+	if (env->ea_image == NULL)
+		return (parse_error(INT_MISSING_WALL_TEXTURE));
+	if (env->we_image == NULL)
+		return (parse_error(INT_MISSING_WALL_TEXTURE));
+	return (true);
+}
+
 bool	map_check(t_env *env)
 {
 	int	i;
@@ -72,7 +85,7 @@ bool	map_check(t_env *env)
 		return (parse_error(INT_C_COLOR_N_DEF));
 	else if (env->f_color == 0)
 		return (parse_error(INT_F_COLOR_N_DEF));
-	return (true);
+	return (texture_check(env));
 }
 
 void	set_map_size(t_env *env)

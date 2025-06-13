@@ -6,11 +6,20 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:13:19 by tom               #+#    #+#             */
-/*   Updated: 2025/06/13 15:39:07 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/13 16:13:36 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3d.h"
+
+void	parse_error_bis(int error_flag)
+{
+	if (error_flag == INT_MISSING_PLAYER)
+		ft_putstr_fd(MISSING_PLAYER, STDERR_FILENO);
+	else if (error_flag == INT_MISSING_WALL_TEXTURE)
+		ft_putstr_fd(MSNG_W_TXTR, STDERR_FILENO);
+	return ;
+}
 
 bool	parse_error(int error_flag)
 {
@@ -35,8 +44,8 @@ bool	parse_error(int error_flag)
 		ft_putstr_fd(F_COLOR_N_DEF, STDERR_FILENO);
 	else if (error_flag == INT_IMAGE_NOT_FOUND)
 		ft_putstr_fd(IMAGE_NOT_FOUND, STDERR_FILENO);
-	else if (error_flag == INT_MISSING_PLAYER)
-		ft_putstr_fd(MISSING_PLAYER, STDERR_FILENO);
+	else 
+		parse_error_bis(error_flag);
 	return (false);
 }
 
