@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:09 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/11 17:32:07 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/14 10:41:43 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ void			player_init_west(t_coord *coords, int i, int j);
  * and puts everything together to have a nice lttle image on your screen
  * 
  * @param env A pointer to the main env struct
+ * @param first_time A boolean that indicates if it's the first time running
+ * the function. Used to determine if we should call mlx_image_to_window or not
  */
-void			render_frame(t_env *env);
+void			render_frame(t_env *env, bool first_time);
 /**
  * @brief The render_wall function starts the raycasting process. First we 
  * determine the ray's direction.
