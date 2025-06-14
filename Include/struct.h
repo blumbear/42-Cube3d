@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/11 16:53:08 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:35:55 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_env
 	bool			map_fill;
 	//--------------------
 	t_coord			*player_coord;
-	bool			player;
 	//--------------------
 	t_ray			ray_coords;
 //--------------------
