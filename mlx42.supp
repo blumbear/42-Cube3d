@@ -37,5 +37,12 @@
 	<MLX42>
 	Memcheck:Leak
 	...
+	obj:/lib/x86_64-linux-gnu/libthread_db.so*
+}
+
+{
+	<MLX42>
+	Memcheck:Leak
+	...
 	fun:_dl_open
 }
