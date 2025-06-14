@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:28:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 15:28:28 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/14 10:41:47 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3d.h"
 
-void	render_frame(t_env *env)
+void	render_frame(t_env *env, bool first_time)
 {
-	int			x;
-	static int	i = 0;
+	int				x;
 
 	x = 0;
 	draw_background(env);
@@ -24,9 +23,8 @@ void	render_frame(t_env *env)
 		render_wall(env, x);
 		x++;
 	}
-	if (i == 0)
+	if (first_time)
 		mlx_image_to_window(env->mlx, env->window, 0, 0);
-	i++;
 }
 
 void	draw_background(t_env *env)

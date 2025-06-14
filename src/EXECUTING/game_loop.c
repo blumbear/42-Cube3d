@@ -6,7 +6,7 @@
 /*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:27:38 by tom               #+#    #+#             */
-/*   Updated: 2025/06/11 16:54:05 by bchedru          ###   ########.fr       */
+/*   Updated: 2025/06/14 10:42:25 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	main_loop(void	*param)
 	current_time = mlx_get_time() * 1000;
 	if (current_time - last_rendering >= 1000 / FPS)
 	{
-		render_frame(env);
+		if (last_rendering == 0)
+			render_frame(env, true);
+		else
+			render_frame(env, false);
 		last_rendering = current_time;
 	}
 }
