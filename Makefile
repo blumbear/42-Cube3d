@@ -10,8 +10,6 @@ LFLAGS =	-Llib \
 			-lamoa -lmlx42 -ldl -lglfw -lXext \
 			-lX11 -lm -lpthread
 
-INC_ARCHIVES = lib/libmlx42.a
-
 ERROR_MANAGEMENT = error_handler
 
 MAIN = main
@@ -50,7 +48,7 @@ fclean : clean
 re: fclean all
 
 $(NAME): $(OBJ_DIR) $(OBJS)
-	$(CC) -o $@ $(OBJS) $(INC_ARCHIVES) $(LFLAGS)
+	$(CC) -o $@ $(OBJS) $(LFLAGS)
 
 
 $(OBJ_DIR):
