@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:34 by tom               #+#    #+#             */
-/*   Updated: 2025/06/13 16:20:34 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:08:23 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,46 @@ char	*fill_buffer(char *line, t_parse_flag flag)
 	buffer[j + 1] = '\0';
 	return (buffer);
 }
-
-bool	fill_struct(char *buffer, t_parse_flag flag, t_env *env)
+bool	fill_image_bis(char *buffer, t_parse_flag flag, t_env *env)
 {
-	if (flag == NO)
+	if (flag == WE)
 	{
-		env->no_image = mlx_load_png(buffer);
-		if (!env->no_image)
-			return (parse_error(INT_IMAGE_NOT_FOUND));
-	}
-	else if (flag == SO)
-	{
-		env->so_image = mlx_load_png(buffer);
-		if (!env->so_image)
-			return (parse_error(INT_IMAGE_NOT_FOUND));
-	}
-	else if (flag == WE)
-	{
+		if (env->we_image)
+			return (parse_error(INT_FLAG_TWICE));
 		env->we_image = mlx_load_png(buffer);
 		if (!env->we_image)
 			return (parse_error(INT_IMAGE_NOT_FOUND));
 	}
 	else if (flag == EA)
 	{
+		if (env->ea_image)
+			return (parse_error(INT_FLAG_TWICE));
 		env->ea_image = mlx_load_png(buffer);
 		if (!env->ea_image)
 			return (parse_error(INT_IMAGE_NOT_FOUND));
 	}
 	return (rgb_check(buffer, flag, env));
+}
+
+bool	fill_image(char *buffer, t_parse_flag flag, t_env *env)
+{
+	if (flag == NO)
+	{
+		if (env->no_image)
+			return (parse_error(INT_FLAG_TWICE));
+		env->no_image = mlx_load_png(buffer);
+		if (!env->no_image)
+			return (parse_error(INT_IMAGE_NOT_FOUND));
+	}
+	else if (flag == SO)
+	{
+		if (env->so_image)
+			return (parse_error(INT_FLAG_TWICE));
+		env->so_image = mlx_load_png(buffer);
+		if (!env->so_image)
+			return (parse_error(INT_IMAGE_NOT_FOUND));
+	}
+	return (fill_image_bis(buffer, flag, env));
 }
 
 bool	ft_handleline(char *line, t_env *env, bool *map)
@@ -90,7 +102,7 @@ bool	ft_handleline(char *line, t_env *env, bool *map)
 	buffer = fill_buffer(line + i, flag);
 	if (!buffer)
 		return (false);
-	if (!fill_struct(buffer, flag, env))
+	if (!fill_image(buffer, flag, env))
 		return (free(buffer), false);
 	free(buffer);
 	return (true);

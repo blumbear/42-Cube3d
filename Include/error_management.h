@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:15 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/13 16:21:00 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:04:19 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define INT_MISSING_PLAYER 14
 # define INT_MISSING_WALL_TEXTURE 15
 # define INT_CANT_OPEN_FILE 16
+# define INT_FLAG_TWICE 17
 
 # define TOO_FEW_ARGUMENT "Too few argument.\nUsage: ./Cub3d <test>.cub\n"
 # define TOO_MANY_ARGUMENT "Too many argument.\nUsage: ./Cub3d <test>.cub\n"
@@ -46,6 +47,7 @@
 # define MISSING_PLAYER "The map has to contain one player.\n"
 # define MSNG_W_TXTR "The map has to contain one wall texture by direction.\n"
 # define CT_OPEN_FILE "The file does not exist or can't be read.\n"
+# define FLAG_TWICE "The file contain the same flag twice.\n"
 
 # define PARSE_ERROR_MSG "PARSE_ERROR: "
 # define ARGUMENT_ERROR_MSG "ARGUMENTS_ERROR: "
