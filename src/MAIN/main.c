@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:15:06 by tom               #+#    #+#             */
-/*   Updated: 2025/06/13 15:39:28 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/16 14:54:38 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ bool	check_file_format(char *file_name)
 void	init_env(t_env *env)
 {
 	env->mlx = NULL;
-	env->texture_fill = -3;
 	env->f_color = 0;
 	env->c_color = 0;
 	env->color_fill = -1;

@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 02:25:37 by bchedru           #+#    #+#             */
-/*   Updated: 2025/06/13 15:35:55 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/16 14:54:52 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct s_env
 	mlx_texture_t	*so_image;
 	mlx_texture_t	*we_image;
 	mlx_texture_t	*ea_image;
-	bool			texture_fill;
 //--------------------
 	uint32_t		f_color;
 	uint32_t		c_color;
