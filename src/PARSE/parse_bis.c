@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 18:40:17 by tom               #+#    #+#             */
-/*   Updated: 2025/05/28 12:56:16 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:36:46 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	check_map_line(char *line, t_env *env, int y)
 		if (ft_strchr("01NSWE\n ", line[i]) == NULL)
 			return (parse_error(INT_MAP_INVALID_CHAR));
 		if (line[i] == 'N' || line[i] == 'W'
-			|| line[i] == 'E' || line[i] == 'O')
+			|| line[i] == 'E' || line[i] == 'S')
 		{
 			if (env->player_coord->pos_x != -1)
 				return (parse_error(INT_DOUBLE_PLAYER_IN_MAP));

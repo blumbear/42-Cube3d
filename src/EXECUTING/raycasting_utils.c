@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bchedru <bchedru@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 23:27:50 by tom               #+#    #+#             */
-/*   Updated: 2025/05/29 23:36:52 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/16 19:48:43 by bchedru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ void	player_init_south(t_coord *coords, int i, int j)
 	coords->plane_y = 0;
 }
 
-void	player_init_west(t_coord *coords, int i, int j)
-{
-	coords->pos_x = i + 0.5;
-	coords->pos_y = j + 0.5;
-	coords->dir_x = -1;
-	coords->dir_y = 0;
-	coords->plane_x = 0;
-	coords->plane_y = 0.66;
-}
-
 void	player_init_east(t_coord *coords, int i, int j)
 {
 	coords->pos_x = i + 0.5;
 	coords->pos_y = j + 0.5;
 	coords->dir_x = 1;
+	coords->dir_y = 0;
+	coords->plane_x = 0;
+	coords->plane_y = 0.66;
+}
+
+void	player_init_west(t_coord *coords, int i, int j)
+{
+	coords->pos_x = i + 0.5;
+	coords->pos_y = j + 0.5;
+	coords->dir_x = -1;
 	coords->dir_y = 0;
 	coords->plane_x = 0;
 	coords->plane_y = -0.66;
