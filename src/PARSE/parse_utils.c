@@ -6,7 +6,7 @@
 /*   By: tom <tom@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 14:09:29 by tom               #+#    #+#             */
-/*   Updated: 2025/06/13 16:02:40 by tom              ###   ########.fr       */
+/*   Updated: 2025/06/16 18:07:28 by tom              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,16 @@ bool	rgb_check(char *buffer, t_parse_flag flag, t_env *env)
 {
 	if (flag == F)
 	{
+		if (env->f_color > 0)
+			return (parse_error(INT_FLAG_TWICE));
 		env->f_color = rgb_to_uint_32(buffer);
 		if (env->f_color == 0)
 			return (parse_error(INT_WRONG_F_RGB));
 	}
 	else if (flag == C)
 	{
+		if (env->c_color > 0)
+			return (parse_error(INT_FLAG_TWICE));
 		env->c_color = rgb_to_uint_32(buffer);
 		if (env->c_color == 0)
 			return (parse_error(INT_WRONG_C_RGB));
